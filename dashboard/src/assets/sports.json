@@ -1,0 +1,32 @@
+[
+    {
+        "reference": 1,
+        "designation":"crosfit",
+        "nombre_seance_semaine": 3,
+        "nombre_seance_mois": 9,
+        "moniteur": "elias",
+        "coach": "Mide",
+        "unite": "mois",
+        "type":"sports"
+    },
+    {
+        "reference": 2,
+        "designation":"musculation",
+        "nombre_seance_semaine": 4,
+        "nombre_seance_mois": 12,
+        "moniteur": "mohamed",
+        "coach": "Erick",
+        "unite": "mois",
+        "type":"sports"
+    },
+    {
+        "reference": 3,
+        "designation":"Couching PRO",
+        "nombre_seance_semaine": 3,
+        "nombre_seance_mois": 9,
+        "moniteur": "Mide",
+        "coach": "Mohamed",
+        "unite": "mois",
+        "type":"sports"
+    }
+]

@@ -1,0 +1,48 @@
+<div class="mt -5 container">
+  <div class="card">
+      <div class="card-header">
+        <h2>
+            Liste des Adherant
+            <a routerLink="/adherant/add" class="btn btn-success float-end">Ajouter</a>
+        </h2> 
+          <input class="form-control me-2" [(ngModel)]="data" name="data" type="search" placeholder="Saisir le CIN ou nom" (input)="chercherAdherant()">
+      </div>
+      <div class="card-body">
+        <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>CIN</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>adress</th>
+                  <th>Telephone</th>
+                  <th>E-mail</th>
+                  <th>Ville</th>
+                  <th>Modifier</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let person of Adherants | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                  <td>{{person.id}}</td>
+                  <td> {{person.cin}} </td>
+                  <td>{{person.nom}}</td>
+                  <td>{{person.prenom}}</td>
+                  <td>{{person.adress}}</td>
+                  <td>{{person.telephone}}</td>
+                  <td>{{person.mail}}</td>
+                  <td>{{person.ville}}</td>
+                  <td><a routerLink="/adherant/{{person.id}}/edit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                  <td>
+                    <button *ngIf="person.active === 1" (click)="deleteAdherant($event, person.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
+                    <button *ngIf="person.active === 0" (click)="ActiverAdherant($event, person.id)" class="btn btn-success">Activer</button>
+                  </td>
+              </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+      </div>
+  </div>
+</div>

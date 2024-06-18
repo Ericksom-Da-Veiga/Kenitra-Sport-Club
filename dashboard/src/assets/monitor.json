@@ -1,0 +1,13 @@
+[
+    {
+        "cin" : "A0892U",
+        "nom": "Mr",
+        "prenom": "mohamed",
+        "date_naissance": "1994-05-10",
+        "adress": "kenitra ville haute",
+        "telephone": "0826719",
+        "mail": "moahmedjoa@gmail.com",
+        "date_entree": "2023-10-07",
+        "cours":"Boxe"
+    }
+]

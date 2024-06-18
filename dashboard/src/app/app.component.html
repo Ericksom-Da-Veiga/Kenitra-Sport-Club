@@ -1,0 +1,10 @@
+<div *ngIf="isLoginPage; else notLoginPage">
+    <app-login></app-login>
+  </div>
+  <ng-template #notLoginPage>
+    <app-sidenav></app-sidenav>
+    <section id="content">
+      <app-navbar></app-navbar>
+    </section>
+    <router-outlet></router-outlet>
+  </ng-template>

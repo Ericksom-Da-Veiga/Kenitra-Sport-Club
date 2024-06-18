@@ -1,0 +1,21 @@
+<div class="formulaire">
+    <h2>Ajouter un nouveau sports/exercice</h2>
+    <div>
+        <div class="formulaire">
+            <form class="row g-3 needs-validation" (ngSubmit)="updateSport()">
+                <div class="col-md-4 form-champ">
+                  <label for="validationCustom02" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="validationCustom02" [(ngModel)]="sport.nom" name="nom" required>
+                </div>
+                <div class="col-md-4 form-champ">
+                  <label for="validationCustom02" class="form-label">Nombre de seance par semaine</label>
+                  <input type="number" class="form-control" id="validationCustom02" [(ngModel)]="sport.nmbr_max_seance_semaine" name="nmbr_max_seance_semaine" required>
+                </div>
+                <div class="col-md-4 form-champ">
+                  <label for="validationCustom02" class="form-label">Prix</label>
+                  <input type="number" class="form-control" id="validationCustom02" [(ngModel)]="sport.prix" name="prix" required>
+                </div>
+                  <button type="submit" class="btn btn-success" >Enregistrer</button>   
+              </form>
+        </div>
+    </div>

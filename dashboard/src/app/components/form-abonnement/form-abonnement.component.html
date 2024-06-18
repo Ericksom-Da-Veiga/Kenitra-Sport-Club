@@ -1,0 +1,37 @@
+<div class="formulaire">
+    <h2>Ajouter un nouveau abonnement</h2>
+    <div class="formulaire">
+      <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
+        <form class="row g-3 needs-validation" (ngSubmit)="saveAbonnement()">
+            <div class="col-md-3 form-champ">
+              <label for="validationCustom01" class="form-label">CIN du adherant</label>
+              <input type="text" [(ngModel)]="cin" name="cin" class="form-control" id="validationCustom01" value="" required>
+            </div> 
+            <div class="col-md-3 form-champ">
+              <label for="validationCustom05" class="form-label">Sports</label>
+              <select  class="form-select" required (change)="onSportChange($event)">
+                <option selected disabled>Choisir sport</option>
+                <option *ngFor="let sport of Sports" [(ngModel)]="List_sports" name="List_sports" [value]="sport.id">{{sport.nom}}</option>
+              </select>
+            </div>
+            <div class="col-md-3 form-champ">
+              <label for="validationCustom05" class="form-label">Date debut</label>
+              <input type="date" [(ngModel)]="date_debut" name="date_debut" class="form-control" id="validationCustom05" required>
+            </div>
+            <div class="col-md-3 form-champ">
+              <label for="validationCustom05" class="form-label">Date Fin</label>
+              <input type="date" [(ngModel)]="date_fin" name="date_fin" class="form-control" id="validationCustom05" required>
+            </div>
+            <div class="col-md-3 form-champ">
+              <label for="validationCustom05" class="form-label">Prix</label>
+              <input type="number" [(ngModel)]="prix_totale" name="prix_totale" class="form-control" id="validationCustom05" required>
+            </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>      
+            <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
+          </form>
+    </div>
+</div>
+
+<script>
+  new MultiSelectTag('sports')  // id
+</script>

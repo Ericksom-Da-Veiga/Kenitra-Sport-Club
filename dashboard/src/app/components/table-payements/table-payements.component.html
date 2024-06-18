@@ -1,0 +1,53 @@
+<div class="mt -5 container">
+    <div class="card">
+        <div class="card-header">
+          <h3>
+            Liste des payements realises
+            <a routerLink="/payement/add" type="button" class="btn btn-success float-end">Ajouter</a>
+          </h3>
+          <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-4 float-end">
+              <label for="startDate">Date debut:</label>
+              <input type="date" id="startDate" [(ngModel)]="startDate" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label for="endDate">Date Fin:</label>
+              <input type="date" id="endDate" [(ngModel)]="endDate" class="form-control">
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+              <button class="btn btn-success me-2" (click)="applyFilter()">Chercher</button>
+              <button class="btn btn-secondary" (click)="clearFilter()">Vider</button>
+            </div>
+          </div>
+          
+          <table class="table tab-pane">
+            <thead>
+                <tr>
+                    <th (click)="sort('cin_adherant')">CIN</th>
+                    <th (click)="sort('nom')">Nom</th>
+                    <th (click)="sort('prenom')">Prenom</th>
+                    <th (click)="sort('date_payement')">Date payement</th>
+                    <th (click)="sort('quant_recu')">Montant Reçu</th>
+                    <th>Montant rendu</th>
+                    <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let payement of filteredPayementList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                    <td>{{payement.cin_adherant}}</td>
+                    <td>{{payement.nom}}</td>
+                    <td>{{payement.prenom}}</td>
+                    <td>{{payement.date_payement}}</td>
+                    <td>{{payement.quant_recu}}</td>
+                    <td>{{payement.rendu}}</td>
+                    <td><button (click)="deletePayement($event, payement.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button></td>
+                </tr>
+              </tbody>
+          </table>
+          <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+        </div> 
+  </div>
+</div>

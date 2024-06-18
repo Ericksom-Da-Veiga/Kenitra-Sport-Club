@@ -1,0 +1,35 @@
+<div class="mt -5 container">
+  <div class="card">
+    <div class="card-header">
+      <h2>
+        Liste des sports
+        <a routerLink="/sports/add"  class="btn btn-success float-end">Ajouter</a>
+      </h2>
+      <input class="form-control me-2" [(ngModel)]="data" name="data" type="search" placeholder="Saisir le nom" (input)="chercherSport()">
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Nom</th>
+                <th>Nombre max de seance</th>
+                <!-- <th>Liste des Coach</th> -->
+                <th>Modifier</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sport of sports">
+            <td>{{sport.id}}</td>
+            <td>{{sport.nom}}</td>
+            <td>{{sport.nmbr_max_seance_semaine}}</td>
+            <td><a routerLink="/sports/{{sport.id}}/edit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a></td>
+            <td><a (click)="deleteSport($event, sport.id)" class="btn btn-danger" ><i class="fa-regular fa-trash-can"></i></a></td>
+          </tr>
+        </tbody>
+      </table> 
+      <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+    </div> 
+  </div>
+</div>

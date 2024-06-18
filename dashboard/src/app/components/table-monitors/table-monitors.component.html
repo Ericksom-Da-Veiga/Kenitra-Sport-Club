@@ -1,0 +1,44 @@
+<div class="mt -5 container">
+  <div class="card">
+      <div class="card-header">
+        <h2>
+            Liste des coachs
+          <a routerLink="/monitor/add" type="button" class="btn btn-success float-end">Ajouter</a>
+        </h2>
+        <input class="form-control me-2" [(ngModel)]="data" name="data" type="search" placeholder="Saisir le CIN ou nom" (input)="chercherCoach()">
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>CIN</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>adress</th>
+                  <th>Telephone</th>
+                  <th>Mail</th>
+                  <th>Date Entree</th>
+                  <th>Cours</th>
+                  <th>Modifier</th>
+                  <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let monitor of monitor_list | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                  <td>{{monitor.cin}}</td>
+                  <td>{{monitor.nom}}</td>
+                  <td>{{monitor.prenom}}</td>
+                  <td>{{monitor.adress}}</td>
+                  <td>{{monitor.telephone}}</td>
+                  <td>{{monitor.mail}}</td>
+                  <td>{{monitor.date_entree }}</td>
+                  <td>{{monitor.nom_sport}}</td>
+                  <td><a routerLink="/monitor/{{monitor.id}}/edit" class="btn btn-success" ><i class="fa-solid fa-pen-to-square"></i></a></td>
+                  <td><a (click)="deleteCoach($event, monitor.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a></td>
+              </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+      </div>
+  </div>
+</div>
