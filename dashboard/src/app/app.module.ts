@@ -45,6 +45,7 @@ import { EditSportComponent } from './components/edit-sport/edit-sport.component
 import { EditAbonnementComponent } from './components/edit-abonnement/edit-abonnement.component';
 import { EditPayementComponent } from './components/edit-payement/edit-payement.component';
 import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

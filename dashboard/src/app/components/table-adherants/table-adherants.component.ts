@@ -18,7 +18,6 @@ export class TableAdherantsComponent implements OnInit{
   itemsPerPage: number = 10;
   nombre: number = 0;
 
-  error!: string;
   message!: string;
 
   constructor(
@@ -38,23 +37,17 @@ export class TableAdherantsComponent implements OnInit{
 
   getAdherants() {
     this.AdherantService.getAdherants().subscribe((res: any) => {
-      if(res.data != null){
       this.Adherants = res.data;
       this.initialAdherants = res.data
-      }else {
-        this.error = "Aucune adherant touver"
-      }
     })
   }
 
   chercherAdherant() {
-
     if (this.data.trim() === '') {
       this.Adherants = [...this.initialAdherants];  // Restaura os dados iniciais
     } else {
       this.AdherantService.chercherAdherant(this.data).subscribe((res: any) =>{
           this.Adherants = res.data;
-          this.initialAdherants = res.data
       })}; 
     }
   
@@ -64,14 +57,14 @@ export class TableAdherantsComponent implements OnInit{
       {
         this.AdherantService.deleteAdherant(adherantId).subscribe((resp:any)=>{
           this.message="Adherant supprimé"
-          setTimeout(() => window.location.reload(), 2000);
+          setTimeout(() => window.location.reload(), 1500);
         })
       }
   }
   ActiverAdherant($event: MouseEvent,adherantId: any) {
     this.AdherantService.activerAdherant(adherantId).subscribe((resp:any)=>{
       this.message="Adherant active"
-      setTimeout(() => window.location.reload(), 2000);
+      setTimeout(() => window.location.reload(), 1500);
     })
     }
 }

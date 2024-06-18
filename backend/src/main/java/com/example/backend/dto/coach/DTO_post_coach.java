@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 
 public record DTO_post_coach(
     @NotBlank //pour eviter que l'utilisateur saisi une String vide
@@ -17,7 +16,6 @@ public record DTO_post_coach(
     String nom,
     @NotBlank
     String prenom,
-    @Past
     LocalDate date_entree,
     @NotBlank
     String adress,

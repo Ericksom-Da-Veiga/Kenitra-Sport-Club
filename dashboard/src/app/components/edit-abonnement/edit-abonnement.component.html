@@ -21,4 +21,6 @@
             <button type="submit"  class="btn btn-success">Enregistrer</button>      
           </form>
     </div>
+    <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
+    <div *ngIf="error" class="alert alert-success" role="alert">{{error}}</div>
 </div>

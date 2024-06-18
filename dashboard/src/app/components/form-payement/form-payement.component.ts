@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbonnementService } from 'src/app/services/abonnement/abonnement.service';
+import { AdherantService } from 'src/app/services/adherant/adherant.service';
 import { PayementService } from 'src/app/services/payement/payement.service';
 
 @Component({
@@ -16,10 +17,12 @@ export class FormPayementComponent {
   id_abonnement!: number;
   message!: string;
   erreur!: string;
+  nom!: string;
 
   constructor(
     private abonnementservice: AbonnementService,
-    private payementservice: PayementService
+    private payementservice: PayementService,
+    private adherantservice: AdherantService
   ){}
 
   chercherAbonnemnt() {
@@ -30,8 +33,11 @@ export class FormPayementComponent {
         if(res.data != null){
           this.prix = res.data[0].prix_totale;
           this.id_abonnement = res.data[0].id;
+          this.adherantservice.GetAdherantByCIN(this.cin).subscribe((res:any)=>{
+            this.nom = res.data[0].nom;                    
+          })
         }
-    })
+      });
     }
   }
 

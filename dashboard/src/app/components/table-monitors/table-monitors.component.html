@@ -8,6 +8,7 @@
         <input class="form-control me-2" [(ngModel)]="data" name="data" type="search" placeholder="Saisir le CIN ou nom" (input)="chercherCoach()">
       </div>
       <div class="card-body">
+        <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
         <table class="table table-bordered">
           <thead>
               <tr>

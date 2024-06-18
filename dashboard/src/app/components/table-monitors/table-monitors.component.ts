@@ -13,6 +13,7 @@ export class TableMonitorsComponent {
   monitor_list!: CoachResponse[];
   initialManitors!: any[];
   data!: String;
+  message!: string;
   //variable pour la pagination
   currentPage: number = 1;
   itemsPerPage: number = 10;
@@ -51,7 +52,7 @@ export class TableMonitorsComponent {
       this.monitor_list = [...this.initialManitors];  // Restaura os dados iniciais
     } else {
       this.CoachService.chercherCoachs(this.data).subscribe((res: any) =>{
-        this.monitor_list = res.data;
+        this.monitor_list = res.data;              
       })};
     }
   
@@ -60,8 +61,8 @@ export class TableMonitorsComponent {
     if(confirm('Vous etez sur de supprimer cette Coach?'))
       {
         this.CoachService.deleteCoachs(CoachID).subscribe((resp:any)=>{
-          window.location.reload();
-          alert(resp.message);
+          setTimeout(()=>window.location.reload(), 1500);
+          this.message = "Coach supprimè";
         })
       }
   }

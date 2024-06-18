@@ -67,10 +67,21 @@ public class CoachService {
 // Enregister un nouveau coach
     public Response<DTO_list_coach> create_coach(DTO_post_coach data){
         Response<DTO_list_coach> response = new Response<>();
+        Coach coach1 = repository.findByCin(data.cin());
+        //tester si le coach existe deja
+        if(coach1 != null){
+            String message = "Le CIN "+data.cin()+" est deja enregistre";
+            response.error(message, "KO");
+            return response;
+        }else if((repository.findByMail(data.mail()))!= null){
+            String message = "Le mail "+data.mail()+" est deja enregistre, voulez essayer un nouveau adress mail";
+            response.error(message, "KO");
+            return response;
+        }
         try {
             Coach coach = new Coach(data);
             repository.save(coach);
-            // crie une list Adherants et l'inicializer pour ajouter les informations de l'adherant que vien d'etre crie
+            // crie une list Coahs et l'inicializer pour ajouter les informations de l'adherant que vien d'etre crie
             List<DTO_list_coach> coachs = new ArrayList<>();
             coachs.add(new DTO_list_coach(coach));
             

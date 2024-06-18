@@ -14,6 +14,8 @@ export class EditAbonnementComponent implements OnInit{
   abonnementId: any;
   AbonnementResponse!: AbonnementResponse;
   duree_abonnement!: Date;
+  message!: string;
+  error!: string;
 
   constructor(
     private activeroute: ActivatedRoute, 
@@ -46,7 +48,11 @@ export class EditAbonnementComponent implements OnInit{
 
     this.AbonnementService.UpdateAbonnement(inputData).subscribe({
       next: (res: any) =>{
-        this.route.navigate(['/abonnement']);
+        this.message="Informations modifiès"
+        setTimeout(() => this.route.navigate(['/abonnement']), 1500);
+        ;
+      },error: (any: any)=>{
+        this.error = "Un erreur s'est produit";
       }
     })
   }

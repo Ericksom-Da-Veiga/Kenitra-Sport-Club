@@ -24,6 +24,7 @@ export class TableAbonnementComponent implements OnInit {
   Abonnements!: AbonnementResponse[];
   duree_abonnement!: Date;
   data: any;
+  message!: string;
 
   Abonnement!: AbonnementResponse;
   
@@ -99,7 +100,7 @@ export class TableAbonnementComponent implements OnInit {
               abonnement.typeAbonnement = "Mensuel"
             }
           })
-        })
+        });
       })
     }
   }
@@ -108,16 +109,16 @@ export class TableAbonnementComponent implements OnInit {
     if(confirm('Vous etez sur de supprimer cette adherant?'))
       {
         this.Abonnementservice.deleteAbonnement(AbonnementId).subscribe((resp:any)=>{
-          window.location.reload();
-          alert(resp.message);
+          this.message="Abonnement supprimé"
+          setTimeout(() => window.location.reload(), 1500);
         })
       }
     }
 
   activerAbonnement($event: MouseEvent,AbonnementId: number) {
     this.Abonnementservice.activerAbonnement(AbonnementId).subscribe((resp:any)=>{
-      window.location.reload();
-      alert(resp.message);
+      this.message="Abonnement active"
+      setTimeout(() => window.location.reload(), 1500);
     })
   }
 
@@ -149,8 +150,6 @@ export class TableAbonnementComponent implements OnInit {
           }
         })
       })
-
-      console.log(this.Abonnement);
       
   }
 }

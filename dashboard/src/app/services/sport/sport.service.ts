@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface SportResponse{
-  id: Number;
+  id: number;
   nom: String;
-  nmbr_max_seance_semaine: Number;
-	prix: Number;
+  nmbr_max_seance_semaine: number;
+	prix: number;
 }
 
 export interface SportPost{

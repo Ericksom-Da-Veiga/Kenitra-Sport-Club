@@ -266,7 +266,28 @@ DELIMITER //
  END//
  DELIMITER //
 
-call findAbonnementByCinOnly('A2819L')
+-- Recuperer la liste des abonnements que votn terminer dans cet mois
+ DELIMITER //
+ create procedure findAbonnementPresqueFini()
+ BEGIN
+	 SELECT *
+	FROM abonnement
+	WHERE active = 1 AND date_fin BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);
+ END //
+ DELIMITER //
+ 
+ 
+ -- Recuperer le nombres d'abonnements active
+DELIMITER //
+CREATE PROCEDURE CountAbonnements()
+BEGIN    
+    SELECT COUNT(*)
+    FROM abonnement a
+    WHERE active = 1;
+END //
+DELIMITER ;
+
+call CountAbonnements();
  -- --------------------------------------------------PAYEMENT-----------------------------------------------------------------------------
 create table payement(
 	id bigint auto_increment,
@@ -370,6 +391,30 @@ BEGIN
 	delete from user where id = id;
 END //
 DELIMITER //
+
+-- ------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE ShowStatsForCurrentMonth()
+BEGIN
+    -- Número de abonnements ativos
+		SELECT COUNT(*) AS ActiveAbonnements
+		FROM abonnement
+		WHERE active = 1;
+
+		-- Número de adherants ativos
+		SELECT COUNT(*) AS ActiveAdherants
+		FROM adherant
+		WHERE active = 1;
+
+		-- Total de dinheiro arrecadado este mês
+		SELECT SUM(quant_recu) AS TotalMoneyCollected
+		FROM payement
+		WHERE MONTH(date_payement) = MONTH(CURDATE())
+		  AND YEAR(date_payement) = YEAR(CURDATE());
+END //
+DELIMITER ;
+
+call ShowStatsForCurrentmonth()
 -- -----------------------------LES TRIGGERS ----------------------------------------------------------------------------------------------
 -- Trigger pour effacer les registre de la table entraineur_sports quand on vas effacer l'entraineur
 -- DELIMITER //

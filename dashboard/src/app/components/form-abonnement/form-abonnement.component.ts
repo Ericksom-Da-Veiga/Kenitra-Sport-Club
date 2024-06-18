@@ -3,6 +3,7 @@ import { AbonnementService } from 'src/app/services/abonnement/abonnement.servic
 import { AbonnementSportsService } from 'src/app/services/abonnement_sports/abonnement_sports.service';
 import { SportResponse, SportService } from 'src/app/services/sport/sport.service';
 import { AdherantService } from 'src/app/services/adherant/adherant.service';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -21,9 +22,14 @@ export class FormAbonnementComponent implements OnInit{
   List_sports!: number[] | null;
   date_debut!: Date | null;
   date_fin!: Date | null;
-  prix_totale!: number | null;
 
   id_abonnement: any;
+  duree!: number;
+
+  prix: number = 0;
+  prix_totale: number = 0;
+  selectedSports: { id: number, nom: string }[] = [];
+
 
   constructor(
     private AbonnementService: AbonnementService,
@@ -32,32 +38,64 @@ export class FormAbonnementComponent implements OnInit{
     private SportService: SportService
   ){}
 
+
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'nom',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+
   ngOnInit(): void {
     this.GetSports();
   }
 
-  GetSports(){
-    this.SportService.getSports().subscribe((res:any)=>{
-      this.Sports = res.data      
-    })
+  GetSports() {
+    this.SportService.getSports().subscribe((res: any) => {
+      this.Sports = res.data;
+    });
   }
 
-  onSportChange({ target }: { target: EventTarget | null }): void {
-    const selectElement = target as HTMLSelectElement;
-    if (selectElement) {
-      this.id_sport = +selectElement.value;
+  onSportChange() {
+    this.calculerPrix();
+  }
+
+  calculerPrix() {
+    if (this.selectedSports.length > 0) {
+      const sportIds = this.selectedSports.map(sport => sport.id);
+
+      forkJoin(sportIds.map(id_sport => this.SportService.detailSport(id_sport))).subscribe((responses: any[]) => {
+        let totalPrix = 0;
+        responses.forEach((res, index) => {
+          const prixSport = res.data[0].prix;
+          totalPrix += prixSport;
+        });
+        this.prix = totalPrix;
+        this.prix_totale = this.duree ? totalPrix * this.duree : totalPrix;
+      });
+    } else {
+      this.prix = 0;
+      this.prix_totale = 0;
     }
   }
 
+  DonnerPrixFinale() {
+    this.prix_totale = this.duree ? this.prix * this.duree : this.prix;
+  }
+
   saveAbonnement(){
-
-    var inputData ={
+    const inputData = {
       cin: this.cin,
-      date_debut: this.date_debut,
-      date_fin: this.date_fin,
+      date_debut: new Date(),
+      date_fin: new Date(),
       prix_totale : this.prix_totale
-      };
+    };
+    inputData.date_fin.setMonth(inputData.date_fin.getMonth() + this.duree);
 
+    
     this.AbonnementService.SaveAbonnement(inputData).subscribe({
       next: (res: any) =>{
         if(res.data != null){
@@ -66,7 +104,6 @@ export class FormAbonnementComponent implements OnInit{
           this.error = "",
           this.date_debut = null,
           this.date_fin = null,
-          this.prix_totale = null
           this.id_abonnement = res.data[0].id;
         }else{
           this.error = res.message

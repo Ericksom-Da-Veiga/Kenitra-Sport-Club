@@ -10,6 +10,8 @@ import { SportPost, SportService } from 'src/app/services/sport/sport.service';
 export class EditSportComponent {
   sport!: SportPost;
   sportID!: any
+  message!: string;
+  error!: string;
 
   constructor(
     private activeroute: ActivatedRoute,
@@ -33,10 +35,11 @@ export class EditSportComponent {
   }
   this.SportService.UpdateSport(inputdata).subscribe({
     next: (res : any) => {
-      this.route.navigate(['/sports'])
-      alert("Sport Modifiè")
+      this.message = "Informations modifiè";
+      setTimeout(()=> this.route.navigate(['/sports']), 1500);
+
     },error: (err : any) => {
-        console.log(err, 'error');
+        this.error = "Un erreur s'est produit";
     },
   })
   }

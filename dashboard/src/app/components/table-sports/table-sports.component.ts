@@ -18,6 +18,8 @@ export class TableSportsComponent implements OnInit{
   itemsPerPage: number = 10;
   nombre: number = 0;
 
+  message!: string;
+
   
   constructor(
     private http: HttpClient,
@@ -55,8 +57,8 @@ export class TableSportsComponent implements OnInit{
     if(confirm('Vous etez sur de supprimer cette Sport?'))
       {
         this.sportService.deleteSport(SportId).subscribe((resp:any)=>{
-          window.location.reload();
-          alert(resp.message);
+          this.message="Sport supprimé"
+          setTimeout(() => window.location.reload(), 1500);
         })
       }
   }

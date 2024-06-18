@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.backend.entites.Abonnement;
 
+
 public interface AbonnementRepository extends JpaRepository<Abonnement, Long> {
     
     @Query(value = "CALL findAbonnementByCinOrNom(?1)", nativeQuery = true)
@@ -20,4 +21,5 @@ public interface AbonnementRepository extends JpaRepository<Abonnement, Long> {
 
     @Query(value = "CALL findAbonnementById(?1)", nativeQuery = true)
     List<Abonnement> findAbonnementById(Long id);
+
 }

@@ -60,6 +60,7 @@ export class FormMonitorComponent implements OnInit {
 
      this.CoachService.SaveCoach(inputdata).subscribe({
       next: (res : any) => {
+        if(res.data != null){
           this.error = "";
           this.message = res.message;
           this.cin ="";
@@ -70,6 +71,9 @@ export class FormMonitorComponent implements OnInit {
           this.adress = "";
           this.telephone = "";
           this.date_entree = null;
+        }else{
+          this.error = res.message;
+        }
       },
       error:(err: any) => {
           console.log(err.error, 'errors');

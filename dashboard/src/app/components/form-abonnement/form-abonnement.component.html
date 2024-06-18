@@ -9,29 +9,28 @@
             </div> 
             <div class="col-md-3 form-champ">
               <label for="validationCustom05" class="form-label">Sports</label>
-              <select  class="form-select" required (change)="onSportChange($event)">
-                <option selected disabled>Choisir sport</option>
-                <option *ngFor="let sport of Sports" [(ngModel)]="List_sports" name="List_sports" [value]="sport.id">{{sport.nom}}</option>
-              </select>
+              <ng-multiselect-dropdown 
+                [placeholder]="'Choisir sport'" 
+                [data]="Sports" 
+                [(ngModel)]="selectedSports" 
+                [settings]="dropdownSettings"
+                name="List_sports"
+                (onSelect)="onSportChange()"
+                (onDeSelect)="onSportChange()"
+                (onSelectAll)="onSportChange()"
+                (onDeSelectAll)="onSportChange()">
+            </ng-multiselect-dropdown>
             </div>
             <div class="col-md-3 form-champ">
-              <label for="validationCustom05" class="form-label">Date debut</label>
-              <input type="date" [(ngModel)]="date_debut" name="date_debut" class="form-control" id="validationCustom05" required>
-            </div>
-            <div class="col-md-3 form-champ">
-              <label for="validationCustom05" class="form-label">Date Fin</label>
-              <input type="date" [(ngModel)]="date_fin" name="date_fin" class="form-control" id="validationCustom05" required>
+              <label for="validationCustom05" class="form-label">Duree(en mois)</label>
+              <input type="number" [(ngModel)]="duree" name="duree" class="form-control" id="validationCustom05" required (input)="DonnerPrixFinale()">
             </div>
             <div class="col-md-3 form-champ">
               <label for="validationCustom05" class="form-label">Prix</label>
-              <input type="number" [(ngModel)]="prix_totale" name="prix_totale" class="form-control" id="validationCustom05" required>
+              <input type="number" [(ngModel)]="prix_totale" name="prix_totale" class="form-control" id="validationCustom05" disabled="" required>
             </div>
             <button type="submit" class="btn btn-success">Enregistrer</button>      
             <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
           </form>
     </div>
 </div>
-
-<script>
-  new MultiSelectTag('sports')  // id
-</script>
