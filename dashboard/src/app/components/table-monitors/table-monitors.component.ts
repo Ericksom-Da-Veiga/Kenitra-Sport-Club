@@ -66,4 +66,50 @@ export class TableMonitorsComponent {
         })
       }
   }
+
+  exportToCSV() {
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true,
+      headers: ["ID", "CIN", "Nom", "Prénom", "ID Sport", "Nom Sport"]
+    };
+  
+    const data = this.monitor_list.map(coach => ({
+      "ID": coach.id,
+      "CIN": coach.cin,
+      "Nom": coach.nom,
+      "Prénom": coach.prenom,
+      "ID Sport": coach.idsport,
+      "Nom Sport": coach.nom_sport
+    }));
+  
+    // Criando o conteúdo CSV
+    let csv = '\ufeff'; // BOM para garantir que o Excel abra corretamente o arquivo UTF-8
+  
+    // Adicionando cabeçalhos
+    csv += options.headers.join(options.fieldSeparator) + '\n';
+  
+    // Adicionando linhas de dados
+    data.forEach(item => {
+      // Type assertion para garantir que `item` corresponde ao formato esperado
+      const row = options.headers.map(field => item[field as keyof typeof item]).join(options.fieldSeparator);
+      csv += row + '\n';
+    });
+  
+    // Criando um elemento 'a' invisível para baixar o arquivo
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", "Monitors.csv");
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+  
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbonnementService } from 'src/app/services/abonnement/abonnement.service';
 import { AdherantService } from 'src/app/services/adherant/adherant.service';
+import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 import { PayementService } from 'src/app/services/payement/payement.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { PayementService } from 'src/app/services/payement/payement.service';
   styleUrls: ['./form-payement.component.scss']
 })
 export class FormPayementComponent {
-  prix!: number | null;
+  prix!: number;
   cin!: string;
   rendu: number = 0;
   recu!: number;
@@ -22,12 +23,13 @@ export class FormPayementComponent {
   constructor(
     private abonnementservice: AbonnementService,
     private payementservice: PayementService,
-    private adherantservice: AdherantService
+    private adherantservice: AdherantService,
+    private invoiceService: InvoiceService
   ){}
 
   chercherAbonnemnt() {
     if(this.cin.trim() === ''){
-      this.prix = null;
+      this.prix = 0;
     }else {
       this.abonnementservice.TrouverAbonnementByCIN(this.cin).subscribe((res: any)=>{
         if(res.data != null){
@@ -63,8 +65,8 @@ export class FormPayementComponent {
           if(res.data != null){
             this.message = res.message;
             this.erreur = "";
-            this.cin = ""
-            this.prix = null
+            this.cin = "";
+            this.invoiceService.generateInvoice(inputData,this.nom, this.prix);
           }else{
             this.erreur = res.message;
             this.message = "";

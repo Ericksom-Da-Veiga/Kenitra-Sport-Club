@@ -47,6 +47,7 @@ import { EditPayementComponent } from './components/edit-payement/edit-payement.
 import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
+
 @NgModule({
   declarations: [
     AppComponent,

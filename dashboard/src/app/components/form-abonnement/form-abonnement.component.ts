@@ -74,7 +74,13 @@ export class FormAbonnementComponent implements OnInit{
           totalPrix += prixSport;
         });
         this.prix = totalPrix;
-        this.prix_totale = this.duree ? totalPrix * this.duree : totalPrix;
+        if(this.duree !== null && this.duree !== 0 && this.duree !== 12 ){
+          this.prix_totale = totalPrix * this.duree;
+        }else if(this.duree === 12){
+          this.prix_totale = 1800;
+        }else{
+          this.prix_totale = this.prix;
+        }
       });
     } else {
       this.prix = 0;
@@ -83,10 +89,13 @@ export class FormAbonnementComponent implements OnInit{
   }
 
   DonnerPrixFinale() {
-    this.prix_totale = this.duree ? this.prix * this.duree : this.prix;
+    this.calculerPrix();
   }
 
   saveAbonnement(){
+
+    const selectedSportIds = this.selectedSports.map(sport => sport.id);
+
     const inputData = {
       cin: this.cin,
       date_debut: new Date(),
@@ -95,39 +104,41 @@ export class FormAbonnementComponent implements OnInit{
     };
     inputData.date_fin.setMonth(inputData.date_fin.getMonth() + this.duree);
 
-    
-    this.AbonnementService.SaveAbonnement(inputData).subscribe({
-      next: (res: any) =>{
-        if(res.data != null){
-          this.cin = "",
-          this.message = res.message
-          this.error = "",
-          this.date_debut = null,
-          this.date_fin = null,
-          this.id_abonnement = res.data[0].id;
-        }else{
-          this.error = res.message
-        }
-        
-      },
-      error:(err: any) => {
-        this.message = "";
-        this.error = "Voulez bien verifier si tous les champs sont remplis";
-      }
-    })
-
-    var inputAbonnementSports={
+    const inputAbonnementSports = {
       id_abonnement: this.id_abonnement,
-      id_sports: this.id_sport
-    }
+      id_sports: selectedSportIds[0]
+    }   
 
-    this.AbonnementsportService.SaveAbonnementSport(inputAbonnementSports).subscribe({
-      next: (res: any)=>{
-        console.log(res);
-      },error:(err:any)=>{
-        console.log(err);
-        
+    this.AbonnementService.SaveAbonnement(inputData).subscribe({
+      next: (res: any) => {
+        if (res.data != null) {
+          this.cin = "";
+          this.message = res.message;
+          this.error = "";
+          this.date_debut = null;
+          this.date_fin = null;
+          this.id_abonnement = res.data[0].id;
+  
+          // Agora que temos this.id_abonnement definido, podemos salvar Abonnementsport
+          const abonnementSportData = {
+            id_abonnement: this.id_abonnement,
+            id_sports: selectedSportIds[0]
+          };
+          
+          this.AbonnementsportService.SaveAbonnementSport(abonnementSportData).subscribe({
+            next: (response: any) => {           
+            },
+            error: (err: any) => {
+            }
+          });
+        } else {
+          this.error = res.message;
+        }
+      },
+      error: (err: any) => {
+        this.message = "";
+        this.error = "Veuillez vérifier que tous les champs sont remplis.";
       }
-    })
+    });    
   }
 }

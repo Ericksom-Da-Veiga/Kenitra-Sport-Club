@@ -95,4 +95,49 @@ export class TablePayementsComponent implements OnInit {
         })
       }
     }
+
+    exportToCSV() {
+      const options = {
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalseparator: '.',
+        showLabels: true, 
+        headers: ["Date de Paiement", "CIN", "Nom", "Prénom", "Montant Reçu", "Rendu"]
+      };
+    
+      const data = this.filteredPayementList.map(payement => ({
+        "Date de Paiement": payement.date_payement,
+        "CIN": payement.cin_adherant,
+        "Nom": payement.nom,
+        "Prénom": payement.prenom,
+        "Montant Reçu": payement.quant_recu,
+        "Rendu": payement.rendu
+      }));
+    
+      // Criando o conteúdo CSV
+      let csv = '\ufeff'; // BOM para garantir que o Excel abra corretamente o arquivo UTF-8
+    
+      // Adicionando cabeçalhos
+      csv += options.headers.join(options.fieldSeparator) + '\n';
+    
+      // Adicionando linhas de dados
+      data.forEach(item => {
+        // Type assertion para garantir que `item` corresponde ao formato esperado
+        const row = options.headers.map(field => item[field as keyof typeof item]).join(options.fieldSeparator);
+        csv += row + '\n';
+      });
+    
+      // Criando um elemento 'a' invisível para baixar o arquivo
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "payements.csv");
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
 }
