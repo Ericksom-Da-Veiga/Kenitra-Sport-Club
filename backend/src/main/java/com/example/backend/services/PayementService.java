@@ -80,6 +80,14 @@ public class PayementService {
         return response;
     }
 
+    public Response<Long> CountMoney(){
+        Response<Long> response = new Response<>();
+        Long money =  repository.CountMoney();
+        List<Long> list_numbers = new ArrayList<>();
+        list_numbers.add(money);
+        response.success("sucess", "ok", list_numbers);
+        return response;
+    }
 
     
 }

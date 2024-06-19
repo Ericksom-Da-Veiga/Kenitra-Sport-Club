@@ -32,7 +32,7 @@ public class Abonnement {
     private LocalDate date_debut;
     private LocalDate date_fin;
     private Double prix_totale; 
-    private int active;
+    private int active = 1;
     
     public Abonnement(DTO_post_abonnement data, Long id_abonnement) {
         this.id_adherant = id_abonnement;

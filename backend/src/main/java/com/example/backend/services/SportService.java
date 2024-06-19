@@ -113,5 +113,14 @@ public class SportService {
         }
         return response;
     }
+
+    public Response<Long> count_Sports(){
+        Response<Long> response = new Response<>();
+        Long nombre =  repository.countSports();
+        List<Long> list_numbers = new ArrayList<>();
+        list_numbers.add(nombre);
+        response.success("sucess", "ok", list_numbers);
+        return response;
+    }
 }
  

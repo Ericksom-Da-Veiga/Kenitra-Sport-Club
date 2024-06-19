@@ -22,4 +22,9 @@ public interface AbonnementRepository extends JpaRepository<Abonnement, Long> {
     @Query(value = "CALL findAbonnementById(?1)", nativeQuery = true)
     List<Abonnement> findAbonnementById(Long id);
 
+    @Query("Select count(a) from Abonnement a where a.active = 1")
+    Long countAbonnement();
+
+    @Query(value = "CALL findAbonnementPresqueFini()", nativeQuery = true)
+    List<Abonnement> findAbonnementPresqueFini();
 }
