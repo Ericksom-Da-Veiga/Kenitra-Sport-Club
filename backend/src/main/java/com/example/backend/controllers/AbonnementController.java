@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/abonnements")
-public class AbonnementControler {
+public class AbonnementController {
     
     @Autowired
     private AbonnementService service;

@@ -46,6 +46,9 @@ import { EditAbonnementComponent } from './components/edit-abonnement/edit-abonn
 import { EditPayementComponent } from './components/edit-payement/edit-payement.component';
 import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AbonnementDetailComponent } from './view/abonnement-detail/abonnement-detail.component';
+import { AbonnementInformationsComponent } from './components/abonnement-informations/abonnement-informations.component';
+import { TableAdminComponent } from './components/table-admin/table-admin.component';
 
 
 @NgModule({
@@ -88,7 +91,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     EditSportComponent,
     EditAbonnementComponent,
     EditPayementComponent,
-    AbonnementEditComponent
+    AbonnementEditComponent,
+    AbonnementDetailComponent,
+    AbonnementInformationsComponent,
+    TableAdminComponent
   ],
   imports: [
     BrowserModule,

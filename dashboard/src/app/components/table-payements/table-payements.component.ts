@@ -44,6 +44,7 @@ export class TablePayementsComponent implements OnInit {
           map((res: any) => {
             payement.nom = res.data[0].nom;
             payement.prenom = res.data[0].prenom;
+            payement.prix = payement.quant_recu - payement.rendu;
             return payement;
           })
         )

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.dto.abonnement.DTO_get_abonnement;
-import com.example.backend.dto.dashboard.DTO_get_list_Dashboard;
+import com.example.backend.services.AdherantService;
 import com.example.backend.services.DashboardService;
 import com.example.backend.services.PayementService;
 import com.example.backend.services.SportService;
@@ -27,6 +27,8 @@ public class DashboardController {
     private SportService sportService;
     @Autowired
     private PayementService payementService;
+    @Autowired
+    private AdherantService adherantService;
     
     @GetMapping("/abonnements")
     public Response<Long> Count_Abonnemnt(){
@@ -51,6 +53,11 @@ public class DashboardController {
     @GetMapping("/payements")
     public Response<Long> countMoney(){
         return payementService.CountMoney();
+    }
+
+    @GetMapping("/adherants")
+    public Response<Long> countAdherants(){
+        return adherantService.count_Adherants();
     }
 
 }

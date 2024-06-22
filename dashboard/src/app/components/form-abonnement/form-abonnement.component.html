@@ -1,13 +1,13 @@
 <div class="formulaire">
-    <h2>Ajouter un nouveau abonnement</h2>
-    <div class="formulaire">
+    <h2>Ajouter un nouvel abonnement</h2>
+    <div >
       <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
         <form class="row g-3 needs-validation" (ngSubmit)="saveAbonnement()">
-            <div class="col-md-3 form-champ">
+            <div class="mb form-champ">
               <label for="validationCustom01" class="form-label">CIN du adherant</label>
               <input type="text" [(ngModel)]="cin" name="cin" class="form-control" id="validationCustom01" value="" required>
             </div> 
-            <div class="col-md-3 form-champ">
+            <div class="mb form-champ">
               <label for="validationCustom05" class="form-label">Sports</label>
               <ng-multiselect-dropdown 
                 [placeholder]="'Choisir sport'" 
@@ -21,11 +21,11 @@
                 (onDeSelectAll)="onSportChange()">
             </ng-multiselect-dropdown>
             </div>
-            <div class="col-md-3 form-champ">
+            <div class="mb form-champ">
               <label for="validationCustom05" class="form-label">Duree(en mois)</label>
               <input type="number" [(ngModel)]="duree" name="duree" class="form-control" id="validationCustom05" required (input)="DonnerPrixFinale()">
             </div>
-            <div class="col-md-3 form-champ">
+            <div class="mb form-champ">
               <label for="validationCustom05" class="form-label">Prix</label>
               <input type="number" [(ngModel)]="prix_totale" name="prix_totale" class="form-control" id="validationCustom05" disabled="" required>
             </div>

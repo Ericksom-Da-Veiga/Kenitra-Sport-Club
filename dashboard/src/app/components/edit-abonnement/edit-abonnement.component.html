@@ -1,26 +1,36 @@
 <div class="formulaire">
-    <h2>Modifier les informations du abonnement</h2>
-    <div class="formulaire">
+    <h2>Modifier les informations de l'abonnement</h2>
+    <div>
         <form class="row g-3 needs-validation" (ngSubmit)="updateAbonnement()" >         
-            <div class="col-md-3 form-champ">
-              <label for="validationCustom03" class="form-label">Sports</label>
-              <input type="text" name="sports" class="form-control" id="validationCustom03" required>
-            </div>
-            <div class="col-md-3 form-champ">
+          <div class="mb form-champ">
+            <label for="validationCustom05" class="form-label">Sports</label>
+            <ng-multiselect-dropdown 
+              [placeholder]="'Choisir sport'" 
+              [data]="Sports" 
+              [(ngModel)]="selectedSports" 
+              [settings]="dropdownSettings"
+              name="List_sports"
+              (onSelect)="calculerPrix()"
+              (onDeSelect)="calculerPrix()"
+              (onSelectAll)="calculerPrix()"
+              (onDeSelectAll)="calculerPrix()">
+          </ng-multiselect-dropdown>
+          </div>
+            <div class="mb form-champ">
               <label for="validationCustom05" class="form-label">Date debut</label>
               <input type="date" [(ngModel)]="AbonnementResponse.date_debut" name="date_debut"  class="form-control" id="validationCustom05" required>
             </div>
-            <div class="col-md-3 form-champ">
-              <label for="validationCustom05" class="form-label">Date Fin</label>
-              <input type="date" [(ngModel)]="AbonnementResponse.date_fin" name="date_fin"  class="form-control" id="validationCustom05" required>
+            <div class="mb form-champ">
+              <label for="validationCustom05" class="form-label">Duree</label>
+              <input type="number" [(ngModel)]="duree" name="duree"  class="form-control" id="validationCustom05" required (input)="calculerPrix()">
             </div>
-            <div class="col-md-3 form-champ">
+            <div class="mb form-champ">
               <label for="validationCustom05" class="form-label">Prix</label>
-              <input type="number" [(ngModel)]="AbonnementResponse.prix_totale" name="prix_totale"  class="form-control" id="validationCustom05" required>
+              <input type="number" disabled [(ngModel)]="prix_totale" name="prix_totale"  class="form-control" id="validationCustom05" required>
             </div>
             <button type="submit"  class="btn btn-success">Enregistrer</button>      
           </form>
     </div>
     <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
-    <div *ngIf="error" class="alert alert-success" role="alert">{{error}}</div>
+    <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
 </div>

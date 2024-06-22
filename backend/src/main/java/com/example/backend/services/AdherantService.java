@@ -162,4 +162,14 @@ public class AdherantService {
         }
         return response;
     }
+
+    //Nmbre des adherants
+    public Response<Long> count_Adherants(){
+        Response<Long> response = new Response<>();
+        Long nombre =  repository.countAdherants();
+        List<Long> list_numbers = new ArrayList<>();
+        list_numbers.add(nombre);
+        response.success("sucess", "ok", list_numbers);
+        return response;
+    }
 }

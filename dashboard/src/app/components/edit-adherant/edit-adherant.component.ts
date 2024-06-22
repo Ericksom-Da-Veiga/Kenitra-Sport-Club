@@ -53,7 +53,6 @@ export class EditAdherantComponent implements OnInit{
           }else{
             this.error = "Probleme pour modifier l'adherant"
           }
-          
         }
       })
   }

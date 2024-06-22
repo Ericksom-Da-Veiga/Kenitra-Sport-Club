@@ -7,12 +7,7 @@ import { differenceInDays} from 'date-fns';
 import { AbonnementSportsService } from 'src/app/services/abonnement_sports/abonnement_sports.service';
 import { SportService } from 'src/app/services/sport/sport.service';
 
-interface Sport {
-  id_sports: number;
-}
-interface NomSport {
-  nom: String
-}
+
 
 @Component({
   selector: 'app-table-abonnement',
@@ -124,34 +119,7 @@ export class TableAbonnementComponent implements OnInit {
 
   
   
-  OpenSports($event: MouseEvent, AbonnementId: number) {
-    this.Abonnementservice.detailAbonnement(AbonnementId).subscribe((res: any)=>{
-      this.Abonnement = res.data[0] 
-    })
-
-    //pour recuperer les id du sports
-    this.Abonnement_sportService.ListerSports(AbonnementId).subscribe((res:any)=>{
-        if (Array.isArray(res.data) && res.data.length > 0) {
-          // Cria um novo campo no abonnement para armazenar todos os id_sports
-          this.Abonnement.id_sport = res.data.map((sport: Sport) => sport.id_sports);
-        } else {
-          // Se res.data não é um array ou está vazio, define id_sports como um array vazio
-          this.Abonnement.id_sport = res.data.id_sports;
-        }
-    })
-
-    this.Abonnement.id_sport.forEach(id =>{
-
-        this.SportService.detailSport(id).subscribe((res:any)=>{
-          if (Array.isArray(res.data) && res.data.length > 0){
-            this.Abonnement.nom_Sport = res.data.map((sport: NomSport) => sport.nom);          
-          }else{
-            this.Abonnement.nom_Sport = res.data.nom;
-          }
-        })
-      })
-      
-  }
+  
 
   exportToCSV() {
     const options = {

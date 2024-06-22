@@ -50,14 +50,10 @@ public class Abonnement_SportsService {
         return response;
     }
 
-    public Response<DTO_get_abonnement_sports> recuperer_sports_by_idabonnemengt(Long id_abonnement){
+    public Response<DTO_get_abonnement_sports> recuperer_sports_by_idAbonnement(Long id_abonnement){
         Response<DTO_get_abonnement_sports> response = new Response<>();
         try {
             List<DTO_get_abonnement_sports> abonnement_sport = repository.findAllByIdAbonnement(id_abonnement).stream().map(DTO_get_abonnement_sports::new).toList();
-            
-            // List<DTO_get_abonnement_sports> list_abonnement_sports = new ArrayList<>();
-
-            // list_abonnement_sports.add(new DTO_get_abonnement_sports(abonnement_sport));
 
             response.success("Sucess", "OK", abonnement_sport);
 

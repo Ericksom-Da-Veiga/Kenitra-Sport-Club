@@ -28,8 +28,5 @@ public class DashboardService {
 
     public Long countAbonnements(){
         return AbonnementRepository.countAbonnement();
-    }
-
-
-    
+    } 
 }

@@ -1,0 +1,25 @@
+<div class="table-data">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+          Liste des sports
+        </h2>
+      </div>
+      <div class="card-body">
+        <table class="table table-pane">
+          <thead>
+              <tr>
+                  <th>Nom</th>
+                  <th>Nombre max de seance</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sport of sports">
+              <td>{{sport.nom}}</td>
+              <td>{{sport.nmbr_max_seance_semaine}}</td>
+            </tr>
+          </tbody>
+        </table> 
+      </div> 
+    </div>
+  </div>

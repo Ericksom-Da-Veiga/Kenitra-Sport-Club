@@ -1,18 +1,18 @@
 <div class="formulaire">
-    <h2>Ajouter un nouveau sports</h2>
+    <h2>Ajouter un nouveau sport</h2>
     <div>
-        <div class="formulaire">
+        <div>
           <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
             <form class="row g-3 needs-validation" (ngSubmit)="saveSport()">
-                <div class="col-md-4 form-champ">
+                <div class="mb form-champ">
                   <label for="validationCustom02" class="form-label">Nom</label>
                   <input type="text" class="form-control" id="validationCustom02" [(ngModel)]="nom" name="nom" required>
                 </div>
-                <div class="col-md-4 form-champ">
+                <div class="mb form-champ">
                   <label for="validationCustom02" class="form-label">Nombre de seance par semaine</label>
                   <input type="number" class="form-control" id="validationCustom02" [(ngModel)]="nmbr_max_seance_semaine" name="nmbr_max_seance_semaine" required>
                 </div>
-                <div class="col-md-4 form-champ">
+                <div class="mb form-champ">
                   <label for="validationCustom02" class="form-label">Prix</label>
                   <input type="number" class="form-control" id="validationCustom02" [(ngModel)]="prix" name="prix" required>
                 </div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbonnementService } from 'src/app/services/abonnement/abonnement.service';
 import { AbonnementSportsService } from 'src/app/services/abonnement_sports/abonnement_sports.service';
 import { SportResponse, SportService } from 'src/app/services/sport/sport.service';
-import { AdherantService } from 'src/app/services/adherant/adherant.service';
 import { forkJoin } from 'rxjs';
 
 
@@ -34,7 +33,6 @@ export class FormAbonnementComponent implements OnInit{
   constructor(
     private AbonnementService: AbonnementService,
     private AbonnementsportService: AbonnementSportsService,
-    private AdherantService: AdherantService,
     private SportService: SportService
   ){}
 
@@ -104,11 +102,6 @@ export class FormAbonnementComponent implements OnInit{
     };
     inputData.date_fin.setMonth(inputData.date_fin.getMonth() + this.duree);
 
-    const inputAbonnementSports = {
-      id_abonnement: this.id_abonnement,
-      id_sports: selectedSportIds[0]
-    }   
-
     this.AbonnementService.SaveAbonnement(inputData).subscribe({
       next: (res: any) => {
         if (res.data != null) {
@@ -120,17 +113,23 @@ export class FormAbonnementComponent implements OnInit{
           this.id_abonnement = res.data[0].id;
   
           // Agora que temos this.id_abonnement definido, podemos salvar Abonnementsport
-          const abonnementSportData = {
-            id_abonnement: this.id_abonnement,
-            id_sports: selectedSportIds[0]
-          };
-          
-          this.AbonnementsportService.SaveAbonnementSport(abonnementSportData).subscribe({
-            next: (response: any) => {           
-            },
-            error: (err: any) => {
-            }
+          selectedSportIds.forEach((id_sport) => {
+            const abonnementSportData = {
+              id_abonnement: this.id_abonnement,
+              id_sports: id_sport
+            };
+
+            this.AbonnementsportService.SaveAbonnementSport(abonnementSportData).subscribe({
+              next: (response: any) => {
+                // Aqui você pode tratar a resposta de cada salvamento de Abonnementsport
+              },
+              error: (err: any) => {
+                // Aqui você pode tratar o erro de cada salvamento de Abonnementsport
+              }
+            });
           });
+          
+          
         } else {
           this.error = res.message;
         }

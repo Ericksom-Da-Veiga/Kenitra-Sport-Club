@@ -26,7 +26,7 @@ export class AbonnementSportsService {
     return this.Http.post('http://localhost:8080/abonnement_sports', inputData);
   }
 
-  UpdateAbonnementSportt(inputData: object){
+  UpdateAbonnementSport(inputData: object){
     return this.Http.put('http://localhost:8080/abonnement_sports',inputData);
   }
 

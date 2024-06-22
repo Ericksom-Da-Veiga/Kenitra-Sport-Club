@@ -1,8 +1,8 @@
-<div class="mt -5 container">
+<div class="table-data">
     <div class="card">
         <div class="card-header">
           <h3>
-            Liste des payements realises
+            Liste des paiements réalisés
             <a routerLink="/payement/add" type="button" class="btn btn-success float-end">Ajouter</a>
           </h3>
           <div *ngIf="message" class="alert alert-success" role="alert">{{message}}</div>
@@ -31,8 +31,7 @@
                     <th (click)="sort('nom')">Nom</th>
                     <th (click)="sort('prenom')">Prenom</th>
                     <th (click)="sort('date_payement')">Date payement</th>
-                    <th (click)="sort('quant_recu')">Montant Reçu</th>
-                    <th>Montant rendu</th>
+                    <th (click)="sort('prix')">Prix</th>
                     <th>Delete</th>
                 </tr>
               </thead>
@@ -42,8 +41,7 @@
                     <td>{{payement.nom}}</td>
                     <td>{{payement.prenom}}</td>
                     <td>{{payement.date_payement}}</td>
-                    <td>{{payement.quant_recu}}</td>
-                    <td>{{payement.rendu}}</td>
+                    <td>{{payement.prix}} MAD</td>
                     <td><button (click)="deletePayement($event, payement.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button></td>
                 </tr>
               </tbody>

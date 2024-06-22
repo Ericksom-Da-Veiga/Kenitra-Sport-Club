@@ -20,6 +20,7 @@ import { AbonnementComponent } from './view/abonnement/abonnement.component';
 import { AbonnementAddComponent } from './view/abonnement-add/abonnement-add.component';
 import { EditAbonnementComponent } from './components/edit-abonnement/edit-abonnement.component';
 import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.component';
+import { AbonnementDetailComponent } from './view/abonnement-detail/abonnement-detail.component';
 
 const routes: Routes = [
   {path: "dashboard", component: DashboardComponent, title: "Dashboard"},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: "abonnement", component: AbonnementComponent, title: "Abonnements"},
   {path: "abonnement/:id/edit", component: AbonnementEditComponent, title: "Edit Abonnement"},
   {path: "abonnement/add", component: AbonnementAddComponent,title: "Ajouter Abonnement" },
+  {path: "abonnement/detail/:id", component: AbonnementDetailComponent, title: "Detail Abonnement"},
   
   {path: "sports", component: SportComponent,title: "Sports"},
   {path: "sports/:id/edit", component: SportEditComponent, title:"Edit Sports"},

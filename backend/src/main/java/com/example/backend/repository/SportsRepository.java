@@ -1,13 +1,11 @@
 package com.example.backend.repository;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.example.backend.dto.sports.DTO_get_sports;
 import com.example.backend.entites.Sports;
 
 public interface SportsRepository extends JpaRepository<Sports, Long> {

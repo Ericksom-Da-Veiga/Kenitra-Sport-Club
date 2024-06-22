@@ -24,11 +24,4 @@ public record DTO_get_abonnement(
             abonnement.getActive()
         );
     };
-    // public DTO_get_abonnement(Long id, Long id_adherant, LocalDate date_debut, LocalDate date_fin, Double prix_totale) {
-    //     this.id = id;
-    //     this.id_adherant = id_adherant;
-    //     this.date_debut = date_debut;
-    //     this.date_fin = date_fin;
-    //     this.prix_totale = prix_totale;
-    // };
 }

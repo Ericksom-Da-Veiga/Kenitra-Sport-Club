@@ -23,4 +23,7 @@ public interface AdherantRepository extends JpaRepository<Adherant, Long> {
     @Query("select a from Adherant a where a.mail = :mail")
     Adherant findByMail(@NotNull String mail);
 
+    @Query("Select count(a) from Adherant a where a.active = 1")
+    Long countAdherants();
+
 }

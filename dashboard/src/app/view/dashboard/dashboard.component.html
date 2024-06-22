@@ -6,9 +6,10 @@
         </div>
       </div>
       <div class="flex">
-        <app-dashboard-cards myclass="bx fa-solid fa-address-card" titleh3="120" text="Adherant"></app-dashboard-cards>
-        <app-dashboard-cards myclass="bx fa-solid fa-dumbbell" titleh3=5 text="Sports"></app-dashboard-cards>
-        <app-dashboard-cards myclass="bx fa-solid fa-hand-holding-dollar" titleh3= "2543 MAD" text="Revenu dernier mois"></app-dashboard-cards>
+        <app-dashboard-cards myclass="bx fa-solid fa-address-card" titleh3="{{NombreAbonnements}}" text="Total Abonnements"></app-dashboard-cards>
+        <app-dashboard-cards myclass="bx fa-solid fa-dumbbell" titleh3="{{NombreAdherants}}" text="Total Adherants"></app-dashboard-cards>
+        <app-dashboard-cards myclass="bx fa-solid fa-dumbbell" titleh3="{{NombreSports}}" text="Total Sports"></app-dashboard-cards>
+        <app-dashboard-cards myclass="bx fa-solid fa-hand-holding-dollar" titleh3= "{{Budget}} MAD" text="Revenu du dernier mois"></app-dashboard-cards>
       </div>
       <app-dashboard-table></app-dashboard-table>
     </main>

@@ -14,6 +14,14 @@ export interface SportPost{
 	prix: Number;
 }
 
+export interface abonnement_sports{
+  id: number;
+  id_sports: number;
+  id_abonnement: number;
+  nom: String;
+  nmbr_max_seance_semaine: number;
+}
+
 
 @Injectable({
   providedIn: 'root'

@@ -4,7 +4,6 @@
 .table-data .head button{
 	background-color: #128989;
 	border-color: #128989;
-    margin-left: 1%;
 	color: white;
 }
 
@@ -17,6 +16,8 @@
 	color: var(--dark);
 }
 .table-data > div {
+	width: 90%;
+	margin-left: 5%;
 	border-radius: 20px;
 	background: var(--light);
 	padding: 24px;

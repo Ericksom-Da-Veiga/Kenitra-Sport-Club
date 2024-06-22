@@ -10,6 +10,7 @@ export interface payementResponse{
   date_payement:Date;
   id_abonnement: String;
   rendu: number;
+  prix: number;
 }
 
 export interface payementsPost{

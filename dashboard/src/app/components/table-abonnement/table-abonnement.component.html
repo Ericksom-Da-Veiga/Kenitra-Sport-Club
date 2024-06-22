@@ -1,7 +1,7 @@
-<div class="mt -5 container">
+<div class="table-data">
     <div class="card">
         <div class="card-header">
-          <h2>Liste des Abonnementes
+          <h2>Liste des abonnements
             <a routerLink="/abonnement/add" class="btn btn-success float-end">Ajouter</a>
           </h2>
           <input class="form-control me-2" [(ngModel)]="data"  name="data" type="search" placeholder="Saisir le CIN ou nom" (input)="chercherAbonnement()">
@@ -33,7 +33,7 @@
                   <td>{{abonnement.prix_totale}} MAD</td>
                   <td>{{abonnement.date_debut}}</td>
                   <td>{{abonnement.date_fin}}</td>
-                  <td><button class="btn btn-success" (click)="OpenSports($event, abonnement.id)">Voir les sports</button></td>
+                  <td><a routerLink="/abonnement/detail/{{abonnement.id}}" class="btn btn-success">Voir les sports</a></td>
                   <td><a routerLink="/abonnement/{{abonnement.id}}/edit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a></td>
                   <td>
                     <button *ngIf="abonnement.active === 1" (click)="deleteAbonnement($event, abonnement.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>

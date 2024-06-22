@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/abonnement_sports")
-public class Abonnements_SportsControler {
+public class Abonnements_SportsController {
     
     @Autowired
     private Abonnement_SportsService service;
@@ -40,7 +40,7 @@ public class Abonnements_SportsControler {
 
     @GetMapping("/{id_abonnement}")
     public Response<DTO_get_abonnement_sports> recuperer_sports_by_idabonnemengt(@PathVariable Long id_abonnement){
-        return service.recuperer_sports_by_idabonnemengt(id_abonnement);
+        return service.recuperer_sports_by_idAbonnement(id_abonnement);
     }
 
     @PostMapping
