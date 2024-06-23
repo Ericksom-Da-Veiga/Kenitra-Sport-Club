@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -9,19 +8,40 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginForm: any;
+  mail!: string;
+  password!: string;
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
   ){
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(3)])
-  })
   }
 
   Login(){
-    
+    if (this.mail && this.password) {
+      var inputData = {
+        mail: this.mail,
+        password: this.password
+      };
+
+      this.loginService.MakeLogin(inputData).subscribe({
+        next: (res: any) => {
+          // Sucesso: res é a string do token JWT
+          console.log('Token recebido:', res);
+
+          // Armazenar o token onde for necessário (por exemplo, localStorage)
+          localStorage.setItem('token', res);
+
+          // Redirecionar ou realizar outra ação após o login
+          this.router.navigate(['/dashboard']); // Exemplo de redirecionamento
+        },
+        error: (err: any) => {
+          // Erro: tratar erro de requisição
+          console.error('Erro ao fazer login:', err);
+        }
+      });
+    } else {
+      console.error('Email e senha são obrigatórios.');
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -49,7 +49,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AbonnementDetailComponent } from './view/abonnement-detail/abonnement-detail.component';
 import { AbonnementInformationsComponent } from './components/abonnement-informations/abonnement-informations.component';
 import { TableAdminComponent } from './components/table-admin/table-admin.component';
-
+import { TokenInterceptor } from './interceptors/token.interceptor'; // Importe o seu interceptor aqui
 
 @NgModule({
   declarations: [
@@ -105,7 +105,13 @@ import { TableAdminComponent } from './components/table-admin/table-admin.compon
     NgxPaginationModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

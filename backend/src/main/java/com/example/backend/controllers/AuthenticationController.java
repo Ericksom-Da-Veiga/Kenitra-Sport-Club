@@ -33,7 +33,6 @@ public class AuthenticationController {
         var UserPassword = new UsernamePasswordAuthenticationToken(data.mail(), data.password());
         var authentication = manager.authenticate(UserPassword);
 
-
         return ResponseEntity.ok(tokenservice.GenerateToken((User) authentication.getPrincipal()));
     };
 }

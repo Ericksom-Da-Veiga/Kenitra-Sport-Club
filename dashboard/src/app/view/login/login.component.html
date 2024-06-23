@@ -1,11 +1,11 @@
 <div class="body">
     <div class="conteneur" id="conteneur">
         <div class="forme-conteneur se-connecter">
-            <form>
+            <form (ngSubmit)="Login()">
                 <h1>Se connecter</h1>
                 <span>avec votre email et password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Mot de passe">
+                <input type="email" [(ngModel)]="mail" name="mail" placeholder="Email">
+                <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe">
                 <button routerLink="">Se Connecter</button> 
             </form>
         </div>

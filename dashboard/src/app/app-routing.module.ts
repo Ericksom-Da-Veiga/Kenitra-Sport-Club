@@ -21,10 +21,11 @@ import { AbonnementAddComponent } from './view/abonnement-add/abonnement-add.com
 import { EditAbonnementComponent } from './components/edit-abonnement/edit-abonnement.component';
 import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.component';
 import { AbonnementDetailComponent } from './view/abonnement-detail/abonnement-detail.component';
+import { AuthGardService } from './services/auth-gard/auth-gard.service';
 
 const routes: Routes = [
-  {path: "dashboard", component: DashboardComponent, title: "Dashboard"},
-  {path: "", component: DashboardComponent, title: "Dashboard"},
+  {path: "dashboard", component: DashboardComponent, title: "Dashboard", canActivate: [AuthGardService]},
+  {path: "", component: DashboardComponent, title: "Dashboard", canActivate: [AuthGardService]},
 
 
   {path: "adherant", component: AdherantComponent,title: "Adherant" },
