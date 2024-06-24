@@ -2,6 +2,7 @@
     <div class="conteneur" id="conteneur">
         <div class="forme-conteneur se-connecter">
             <form (ngSubmit)="Login()">
+                <div *ngIf="error" class="alert alert-danger" id="error" role="alert"><p>{{error}}</p></div>
                 <h1>Se connecter</h1>
                 <span>avec votre email et password</span>
                 <input type="email" [(ngModel)]="mail" name="mail" placeholder="Email">

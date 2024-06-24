@@ -34,8 +34,7 @@
         "icon":"bx fa-solid fa-user-tie",
         "name":"Coach",
         "routerLink":"/monitor"
-    },
-    {
+    },    {
         "class":"",
         "icon":"bx fa-solid fa-user-gear",
         "name":"Paramètres",

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit{
   List!: any[];
-  constructor(private HttpClient: HttpClient){}
+  constructor(
+    private HttpClient: HttpClient,
+    private service: AuthService
+  ){}
 
     ngOnInit(): void {
       this.HttpClient.get<any[]>('assets/SideBar.json').subscribe( sidebar=> {
@@ -20,5 +24,9 @@ export class SidenavComponent implements OnInit{
     activer(champ: any) {
       this.List.forEach(item => item.class = ''); // Remove 'active' de todos os itens
       champ.class = "active"
+    }
+
+    Logout(){
+      this.service.logout();
     }
 }

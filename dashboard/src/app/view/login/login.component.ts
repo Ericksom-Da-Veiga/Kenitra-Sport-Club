@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginComponent {
   mail!: string;
   password!: string;
+  error!: string;
 
   constructor(
     private router: Router,
@@ -36,12 +37,11 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']); // Exemplo de redirecionamento
         },
         error: (err: any) => {
-          // Erro: tratar erro de requisição
-          console.error('Erro ao fazer login:', err);
+          this.error = "email ou mot passe incorrect"
         }
       });
     } else {
-      console.error('Email e senha são obrigatórios.');
+      this.error = "email et mot-pass sont obligatoires"
     }
   }
 }

@@ -22,36 +22,43 @@ import { EditAbonnementComponent } from './components/edit-abonnement/edit-abonn
 import { AbonnementEditComponent } from './view/abonnement-edit/abonnement-edit.component';
 import { AbonnementDetailComponent } from './view/abonnement-detail/abonnement-detail.component';
 import { AuthGardService } from './services/auth-gard/auth-gard.service';
+import { SettingsAddComponent } from './view/settings-add/settings-add.component';
+import { SettingsEditComponent } from './view/settings-edit/settings-edit.component';
 
 const routes: Routes = [
   {path: "dashboard", component: DashboardComponent, title: "Dashboard", canActivate: [AuthGardService]},
   {path: "", component: DashboardComponent, title: "Dashboard", canActivate: [AuthGardService]},
 
 
-  {path: "adherant", component: AdherantComponent,title: "Adherant" },
-  {path: "adherant/:id/edit", component: AdherantEditComponent, title:"Edit adherant"},
-  {path: "adherant/add", component: AdherantAddComponent,title: "Ajouter Adherant" },
+  {path: "adherant", component: AdherantComponent,title: "Adherant", canActivate: [AuthGardService] },
+  {path: "adherant/:id/edit", component: AdherantEditComponent, title:"Edit adherant", canActivate: [AuthGardService]},
+  {path: "adherant/add", component: AdherantAddComponent,title: "Ajouter Adherant", canActivate: [AuthGardService] },
 
   {path: "payement", component: PayementComponent, title: "Payements"},
-  {path: "payement/:id/edit", component: PayementEditComponent, title:"Edit Payement"},
-  {path: "payement/add", component: PayementAddComponent,title: "Ajouter Payement" },
+  {path: "payement/:id/edit", component: PayementEditComponent, title:"Edit Payement", canActivate: [AuthGardService]},
+  {path: "payement/add", component: PayementAddComponent,title: "Ajouter Payement", canActivate: [AuthGardService]},
 
-  {path: "abonnement", component: AbonnementComponent, title: "Abonnements"},
-  {path: "abonnement/:id/edit", component: AbonnementEditComponent, title: "Edit Abonnement"},
-  {path: "abonnement/add", component: AbonnementAddComponent,title: "Ajouter Abonnement" },
-  {path: "abonnement/detail/:id", component: AbonnementDetailComponent, title: "Detail Abonnement"},
+  {path: "abonnement", component: AbonnementComponent, title: "Abonnements", canActivate: [AuthGardService]},
+  {path: "abonnement/:id/edit", component: AbonnementEditComponent, title: "Edit Abonnement",canActivate: [AuthGardService] },
+  {path: "abonnement/add", component: AbonnementAddComponent,title: "Ajouter Abonnement", canActivate: [AuthGardService] },
+  {path: "abonnement/detail/:id", component: AbonnementDetailComponent, title: "Detail Abonnement", canActivate: [AuthGardService]},
   
-  {path: "sports", component: SportComponent,title: "Sports"},
-  {path: "sports/:id/edit", component: SportEditComponent, title:"Edit Sports"},
-  {path: "sports/add", component: SportAddComponent,title: "Ajouter Sports" },
+  {path: "sports", component: SportComponent,title: "Sports", canActivate: [AuthGardService]},
+  {path: "sports/:id/edit", component: SportEditComponent, title:"Edit Sports", canActivate: [AuthGardService]},
+  {path: "sports/add", component: SportAddComponent,title: "Ajouter Sports", canActivate: [AuthGardService] },
 
-  {path: "monitor", component: MonitorsComponent,title: "Monitor"},
-  {path: "monitor/add", component: MonitorsAddsComponent,title: "Ajouter Monitor"},
-  {path: "monitor/:id/edit", component: MonitorsEditComponent,title: "Edit Monitor"},
+  {path: "monitor", component: MonitorsComponent,title: "Monitor", canActivate: [AuthGardService]},
+  {path: "monitor/add", component: MonitorsAddsComponent,title: "Ajouter Monitor", canActivate: [AuthGardService]},
+  {path: "monitor/:id/edit", component: MonitorsEditComponent,title: "Edit Monitor", canActivate: [AuthGardService]},
 
-  {path: "statistique", component: StatistiquesComponent, title: "Statistiques"},
+  {path: "statistique", component: StatistiquesComponent, title: "Statistiques", canActivate: [AuthGardService]},
   {path: "login", component: LoginComponent,title: "Login"},
-  {path: "settings",component: SettingsComponent, title: "settings"}
+  {path: "settings",component: SettingsComponent, title: "settings", canActivate: [AuthGardService]},
+  
+  {path: "user/add",component: SettingsAddComponent, title: "Add Users", canActivate: [AuthGardService]},
+  {path: "user/:id/edit",component: SettingsEditComponent, title: "Modify User", canActivate: [AuthGardService]}
+
+
 ];
 
 @NgModule({

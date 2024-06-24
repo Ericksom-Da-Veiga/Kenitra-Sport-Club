@@ -162,3 +162,11 @@ body{
 .conteneur.active .contenue{
     transform: translateX(200%);
 }
+
+#error{
+    width: 100%;
+    color: #333;
+}
+#error p{
+    margin-left: 2rem;
+}

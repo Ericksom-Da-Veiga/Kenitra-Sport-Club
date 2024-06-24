@@ -21,6 +21,5 @@ public interface CoachRepository extends JpaRepository<Coach, Long> {
 
     // @Query(value = "SELECT id, cin, mail, password, c.nom, c.prenom, c.date_entree, c.adress, c.telephone FROM coach c WHERE c.cin LIKE :data OR c.nom LIKE :data OR c.prenom LIKE :data", nativeQuery = true)
     // List<Coach> findCoachByCinOrNom(@Param("data") String data);
-
 } 
 

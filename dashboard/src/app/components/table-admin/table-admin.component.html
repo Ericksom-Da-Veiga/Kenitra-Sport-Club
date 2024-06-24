@@ -1,0 +1,43 @@
+<div class="table-data">
+    <div class="card">
+        <div class="card-header">
+          <h2>
+              Liste des Administracteur et SuperAdministracteur
+              <a routerLink="/user/add" class="btn btn-success float-end">Ajouter</a>
+
+          </h2> 
+            <input class="form-control me-2" [(ngModel)]="data" name="data" type="search" placeholder="Saisir le CIN ou nom" (input)="ChercherUser()">
+        </div>
+        <div class="card-body">
+          <button type="button" class="btn btn-secondary float-end" (click)="exportToCSV()">Exporter en CSV</button>
+            <table class="table table-pane">
+            <thead>
+                <tr>
+                    <td>CIN</td>
+                    <td>Nom</td>
+                    <td>Prenom</td>
+                    <td>E-mail</td>
+                    <td>Telephone</td>
+                    <td>Role</td>
+                    <td>Modifier</td>
+                    <td>Action</td>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of Users| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                    <td>{{user.cin}}</td>
+                    <td>{{user.nom}}</td>
+                    <td>{{user.prenom}}</td>
+                    <td>{{user.mail}}</td>
+                    <td>{{user.telephone}}</td>
+                    <td>{{user.role}}</td>
+                    <td><a routerLink="/user/{{user.id}}/edit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><button (click)="deleteUser($event, user.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button></td>
+                </tr>
+              </tbody>
+          </table>
+          <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+        </div>
+    </div>
+  </div>

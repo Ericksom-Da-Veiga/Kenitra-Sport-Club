@@ -14,6 +14,8 @@ export class EditCoachComponent implements OnInit {
   coachId!: any;
   sports !: SportResponse[];
   idsport!: Number;
+  error!: string;
+  message!: string;
 
   constructor(
     private activeroute: ActivatedRoute, 
@@ -52,10 +54,10 @@ updateCoach() {
 
       this.CoachService.UpdateCoachs(inputdata).subscribe({
         next: (res:any) => {
-          this.route.navigate(['/monitor']);
-          alert(res.message);
+          this.message = res.message;
+          setTimeout(()=> this.route.navigate(['/monitor']), 1500);
         },error:(err:any)=> {
-            alert("Nous avons trouvez un probleme, essayer plus tard");
+            this.error = "Nous avons trouvez un probleme, essayer plus tard";
         },
       })
 }

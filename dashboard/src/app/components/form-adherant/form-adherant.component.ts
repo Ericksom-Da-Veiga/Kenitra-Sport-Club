@@ -30,46 +30,46 @@ export class FormAdherantComponent {
 
   saveAdherant() {
 
- var inputdata = {
-  cin : this.cin,
-  nom : this.nom,
-  prenom : this.prenom,
-  mail : this.mail,
-  password : this.password,
-  date_naissance : this.date_naissance,
-  adress : this.adress,
-  telephone : this.telephone,
-  ville : this.ville,
-  nom_pere : this.nom_pere,
-  nom_mere : this.nom_mere,
-  tel_parant :this.tel_parant
-  }
+    var inputdata = {
+      cin : this.cin,
+      nom : this.nom,
+      prenom : this.prenom,
+      mail : this.mail,
+      password : this.password,
+      date_naissance : this.date_naissance,
+      adress : this.adress,
+      telephone : this.telephone,
+      ville : this.ville,
+      nom_pere : this.nom_pere,
+      nom_mere : this.nom_mere,
+      tel_parant :this.tel_parant
+    }
 
-  this.AdherantService.SaveAdherant(inputdata).subscribe({
-    next: (res : any) => {
-       if(res.data != null){
-        this.error = "";
-        this.message = res.message;
-        this.cin ="";
-        this.nom = "";
-        this.prenom = "";
-        this.mail = "";
-        this.password = "";
-        this.adress = "";
-        this.telephone = "";
-        this.date_naissance = null;
-        this.ville = "";
-        this.nom_pere = "";
-        this.nom_mere = "";
-        this.tel_parant = "";
-       }else{
-        this.error = res.message;
-        this.message = "";
-       }
-    },error:(err: any) => {
-        this.message = "";
-        this.error = "Voulez verifier les informations saisi";
-      },
-  });
-}
+    this.AdherantService.SaveAdherant(inputdata).subscribe({
+      next: (res : any) => {
+        if(res.data != null){
+          this.error = "";
+          this.message = res.message;
+          this.cin ="";
+          this.nom = "";
+          this.prenom = "";
+          this.mail = "";
+          this.password = "";
+          this.adress = "";
+          this.telephone = "";
+          this.date_naissance = null;
+          this.ville = "";
+          this.nom_pere = "";
+          this.nom_mere = "";
+          this.tel_parant = "";
+        }else{
+          this.error = res.message;
+          this.message = "";
+        }
+      },error:(err: any) => {
+          this.message = "";
+          this.error = "Voulez verifier les informations saisi";
+        },
+    });
+  }
 }

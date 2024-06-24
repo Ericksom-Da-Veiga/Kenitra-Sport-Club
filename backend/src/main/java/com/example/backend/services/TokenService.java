@@ -50,6 +50,6 @@ public class TokenService {
 
     // para determinar o tempo de vida(duraçao) desse nosso token
     private Instant genExepirationDate(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("+01:00")); //o nosso token vai ter um tempo de vida de 2 hrs
+        return LocalDateTime.now().plusHours(24).toInstant(ZoneOffset.of("+01:00")); //o nosso token vai ter um tempo de vida de 2 hrs
     }
 }

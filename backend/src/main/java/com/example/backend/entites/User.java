@@ -6,6 +6,10 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.example.backend.dto.user.DTO_post_user;
+import com.example.backend.dto.user.DTO_put_user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +34,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String CIN;
+    private String cin;
     private String mail;
     private String password;
     private String nom;
@@ -54,5 +58,28 @@ public class User implements UserDetails {
 
     public String getPassword() {
         return password;
+    }
+
+    //Modifier les info du user
+    public void UpdatInfo(DTO_put_user data) {
+       if (data.cin() != null) this.cin = data.cin();
+       if (data.mail() != null) this.mail = data.mail();
+       if (data.nom() != null) this.nom = data.nom();
+       if (data.prenom() != null) this.prenom = data.prenom();
+       if (data.role() != null) this.role = data.role();
+       if (data.password() != null) {
+        String ecryptedPassword = new BCryptPasswordEncoder().encode(data.password()); 
+        this.password = ecryptedPassword;
+       }
+    }
+//crier un nouveau user
+    public User(DTO_post_user data, String password) {
+        this.cin = data.cin();
+        this.password = password;
+        this.mail = data.mail();
+        this.nom = data.nom();
+        this.prenom = data.prenom();
+        this.role = data.role();
+        this.telephone = data.telephone();
     }
 }

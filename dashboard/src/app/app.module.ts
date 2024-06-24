@@ -49,7 +49,13 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AbonnementDetailComponent } from './view/abonnement-detail/abonnement-detail.component';
 import { AbonnementInformationsComponent } from './components/abonnement-informations/abonnement-informations.component';
 import { TableAdminComponent } from './components/table-admin/table-admin.component';
-import { TokenInterceptor } from './interceptors/token.interceptor'; // Importe o seu interceptor aqui
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { TableUsersComponent } from './components/table-users/table-users.component';
+import { SettingsEditComponent } from './view/settings-edit/settings-edit.component';
+import { SettingsAddComponent } from './view/settings-add/settings-add.component';
+import { EditSettingsComponent } from './components/edit-settings/edit-settings.component';
+import { FormSettingsComponent } from './components/form-settings/form-settings.component';
+
 
 @NgModule({
   declarations: [
@@ -94,7 +100,12 @@ import { TokenInterceptor } from './interceptors/token.interceptor'; // Importe 
     AbonnementEditComponent,
     AbonnementDetailComponent,
     AbonnementInformationsComponent,
-    TableAdminComponent
+    TableAdminComponent,
+    TableUsersComponent,
+    SettingsEditComponent,
+    SettingsAddComponent,
+    EditSettingsComponent,
+    FormSettingsComponent
   ],
   imports: [
     BrowserModule,

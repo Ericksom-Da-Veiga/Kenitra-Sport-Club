@@ -26,7 +26,6 @@ public class CoachController {
     @Autowired
     private CoachService coachService;
 
-
     @GetMapping
     public Response<DTO_list_coach> recuperer_coachs(){
         return coachService.recuperer_coachs();
