@@ -26,9 +26,9 @@ export class DashboardComponent implements OnInit{
     this.countAbonnements();
   }
 
-
+//recuprer le budget de cette moi
   countMoney(){
-    this.dashboardService.countMoney().subscribe((res:any)=>{
+    this.dashboardService.countMoneyForMonth().subscribe((res:any)=>{
       this.Budget = res.data[0];
     })
   }

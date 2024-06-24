@@ -70,11 +70,11 @@ public class CoachService {
         Coach coach1 = repository.findByCin(data.cin());
         //tester si le coach existe deja
         if(coach1 != null){
-            String message = "Le CIN "+data.cin()+" est deja enregistre";
+            String message = "Le CIN "+data.cin()+" est déjà enregistre";
             response.error(message, "KO");
             return response;
         }else if((repository.findByMail(data.mail()))!= null){
-            String message = "Le mail "+data.mail()+" est deja enregistre, voulez essayer un nouveau adress mail";
+            String message = "Le mail "+data.mail()+" est déjà enregistre, veuillez essayer un nouveau adress mail";
             response.error(message, "KO");
             return response;
         }

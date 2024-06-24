@@ -73,7 +73,7 @@ public class UserService {
             response.error(message, "KO");
             return response;
         }else if((repository.findByMail(data.mail()))!= null){
-            String message = "Le mail "+data.mail()+" et déjà enregistre, veut essayer un nouveau adresse mail";
+            String message = "Le mail "+data.mail()+" et déjà enregistre, veuillez essayer un nouveau adresse mail";
             response.error(message, "KO");
             return response;
         }
@@ -94,7 +94,7 @@ public class UserService {
         return response;
     }
 
-// Modifier les information des Adherants
+// Modifier les information des Utilisateur
     public Response<DTO_get_user> modifier_user(DTO_put_user data){
         Response<DTO_get_user> response = new Response<>();
         try {
@@ -112,7 +112,7 @@ public class UserService {
         return response;
     }
 
-// Supprimer un adherant
+// Supprimer un Utilisateur
     public Response<DTO_get_user> delete_user(Long id){
         Response<DTO_get_user> response = new Response<>();
         try {

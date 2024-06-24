@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -26,15 +27,13 @@ export class LoginComponent {
       };
 
       this.loginService.MakeLogin(inputData).subscribe({
-        next: (res: any) => {
-          // Sucesso: res é a string do token JWT
-          console.log('Token recebido:', res);
+        next: (token: any) => {
+          localStorage.setItem('token', token);
 
-          // Armazenar o token onde for necessário (por exemplo, localStorage)
-          localStorage.setItem('token', res);
+          const tokenPayload: any = jwt_decode(token);
+          localStorage.setItem('role', tokenPayload.role);
 
-          // Redirecionar ou realizar outra ação após o login
-          this.router.navigate(['/dashboard']); // Exemplo de redirecionamento
+          this.router.navigate(['/dashboard']);
         },
         error: (err: any) => {
           this.error = "email ou mot passe incorrect"

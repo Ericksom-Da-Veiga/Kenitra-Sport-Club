@@ -86,11 +86,11 @@ public class AdherantService {
         Adherant adherant1 = repository.findByCin(data.cin());
         //tester si l'adherant existe deja
         if(adherant1 != null){
-            String message = "Le CIN "+data.cin()+" est deja enregistre, vous pouvez chercher le numero de CIN et activer l'adherant";
+            String message = "Le CIN "+data.cin()+" est déjà enregistre, vous pouvez chercher le numero de CIN et activer l'adherant";
             response.error(message, "KO");
             return response;
         }else if((repository.findByMail(data.mail()))!= null){
-            String message = "Le mail "+data.mail()+" est deja enregistre, voulez essayer un nouveau adress mail";
+            String message = "Le mail "+data.mail()+" est déjà enregistre, veuillez essayer un nouveau adress mail";
             response.error(message, "KO");
             return response;
         }

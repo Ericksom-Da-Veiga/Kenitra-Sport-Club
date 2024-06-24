@@ -47,4 +47,14 @@ public class PayementController {
     public Response<DTO_get_payements> delete(@PathVariable Long id){
         return service.delete(id);
     }
+
+    @GetMapping("/countmonth")
+    public Response<Long> countMoneyForCurrentMonth(){
+        return service.CountMoneyForCurrentMonth();
+    }
+
+    @GetMapping("/countTotal")
+    public Response<Long> countTotalMoney(){
+        return service.CountMoney();
+    }
 }

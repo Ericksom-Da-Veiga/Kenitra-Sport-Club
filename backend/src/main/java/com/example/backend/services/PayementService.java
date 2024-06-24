@@ -39,17 +39,6 @@ public class PayementService {
         return response;
     }
 
-    // public Response<DTO_get_payements> recuperer_payement_by_CIN(String cin){
-    //     Response<DTO_get_payements> response = new Response<>();
-    //     try {
-    //         List<DTO_get_payements> list_payement = repository.findAllByCIN(cin).stream().map(DTO_get_payements::new).toList();
-    //         response.success("sucess","ok", list_payement);
-    //     } catch (Exception e) {
-    //         response.exception(e.getMessage(), "KO");
-    //     }
-    //     return response;
-    // }
-
     public Response<DTO_get_payements> save_payements(DTO_post_payements data){
         Response<DTO_get_payements> response = new Response<>();
         try {
@@ -80,14 +69,22 @@ public class PayementService {
         return response;
     }
 
-    public Response<Long> CountMoney(){
+    public Response<Long> CountMoneyForCurrentMonth(){
         Response<Long> response = new Response<>();
-        Long money =  repository.CountMoney();
+        Long money =  repository.CountMoneyForCurrentMonth();
         List<Long> list_numbers = new ArrayList<>();
         list_numbers.add(money);
         response.success("sucess", "ok", list_numbers);
         return response;
     }
 
+    public Response<Long> CountMoney(){
+        Response<Long> response = new Response<>();
+        Long money =  repository.CountTotalMoney();
+        List<Long> list_numbers = new ArrayList<>();
+        list_numbers.add(money);
+        response.success("sucess", "ok", list_numbers);
+        return response;
+    }
     
 }

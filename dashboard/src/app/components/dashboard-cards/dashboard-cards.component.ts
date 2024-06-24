@@ -10,4 +10,5 @@ export class DashboardCardsComponent {
   @Input() myclass!: string;
   @Input() titleh3!: string;
   @Input() text!: string;
+  @Input() link!: string
 }

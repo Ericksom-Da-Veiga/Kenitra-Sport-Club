@@ -8,5 +8,8 @@ import com.example.backend.entites.Payement;
 public interface PayementRepository extends JpaRepository<Payement, Long> {
 
     @Query(value = "call ShowMoneyForCurrentMonth()", nativeQuery = true)
-    Long CountMoney();    
+    Long CountMoneyForCurrentMonth();
+    
+    @Query(value = "call ShowTotalMoney()", nativeQuery = true)
+    Long CountTotalMoney(); 
 }

@@ -42,5 +42,13 @@ export class PayementService {
 
   deletePayements(PayementId: number) {
     return this.Http.delete(`http://localhost:8080/payements/${PayementId}`);
-  }
+  };
+
+  countMoneyForMonth(){
+    return this.Http.get('http://localhost:8080/payements/countmonth');
+  };
+
+  countTotalMoney(){
+    return this.Http.get('http://localhost:8080/payements/countTotal');
+  };
 }

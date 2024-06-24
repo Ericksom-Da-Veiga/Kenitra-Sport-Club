@@ -1,22 +1,22 @@
 <section id="sidebar">
-    <a class="brand">
-      <i class='bx bxs-smile'></i>
-      <span class="text">Kenitra Sport Club</span>
-    </a>
-    <ul class="side-menu top">
-      <li *ngFor="let champ of List" ngClass={{champ.class}}>
-        <a routerLink={{champ.routerLink}} (click)="activer(champ)" >
-          <i ngClass={{champ.icon}}></i>
-          <span class="text">{{champ.name}} </span>
-        </a>
-      </li>
-    </ul>
-    <ul class="side-menu">
-      <li>
-        <a href="" class="logout" (click)="Logout()">
-          <i class="bx fa-solid fa-arrow-right-from-bracket"></i>
-          <span class="text">Se déconnecter</span>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <a class="brand">
+    <i class='bx bxs-smile'></i>
+    <span class="text">Kenitra Sport Club</span>
+  </a>
+  <ul class="side-menu top">
+    <li *ngFor="let champ of List" ngClass={{champ.class}}>
+      <a routerLink={{champ.routerLink}} (click)="activer(champ)" >
+        <i ngClass={{champ.icon}}></i>
+        <span class="text">{{champ.name}} </span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="" class="logout" (click)="Logout()">
+        <i class="bx fa-solid fa-arrow-right-from-bracket"></i>
+        <span class="text">Se déconnecter</span>
+      </a>
+    </li>
+  </ul>
+</section>

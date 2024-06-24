@@ -44,6 +44,7 @@
                     <td>{{payement.prix}} MAD</td>
                     <td><button (click)="deletePayement($event, payement.id)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button></td>
                 </tr>
+                
               </tbody>
           </table>
           <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>

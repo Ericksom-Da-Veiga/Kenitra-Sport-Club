@@ -30,4 +30,12 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
+
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
+  isAuthenticated() {
+    return !!localStorage.getItem('token');
+  }
 }

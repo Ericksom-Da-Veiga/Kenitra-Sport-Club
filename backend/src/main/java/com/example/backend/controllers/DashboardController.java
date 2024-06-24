@@ -50,11 +50,6 @@ public class DashboardController {
         return sportService.count_Sports();
     }
 
-    @GetMapping("/payements")
-    public Response<Long> countMoney(){
-        return payementService.CountMoney();
-    }
-
     @GetMapping("/adherants")
     public Response<Long> countAdherants(){
         return adherantService.count_Adherants();

@@ -26,6 +26,7 @@ public class TokenService {
              String token = JWT.create()
                                 .withIssuer("Gym-API")
                                 .withSubject(user.getMail())
+                                .withClaim("role", user.getRole())
                                 .withExpiresAt(genExepirationDate())
                                 .sign(algorithm);
                 return token;

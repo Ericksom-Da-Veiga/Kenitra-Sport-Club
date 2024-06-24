@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dto.abonnement.DTO_get_abonnement;
-import com.example.backend.dto.dashboard.DTO_get_list_Dashboard;
 import com.example.backend.infra.Response;
 import com.example.backend.repository.AbonnementRepository;
 

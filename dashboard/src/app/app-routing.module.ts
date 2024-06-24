@@ -29,8 +29,7 @@ const routes: Routes = [
   {path: "dashboard", component: DashboardComponent, title: "Dashboard", canActivate: [AuthGardService]},
   {path: "", component: DashboardComponent, title: "Dashboard", canActivate: [AuthGardService]},
 
-
-  {path: "adherant", component: AdherantComponent,title: "Adherant", canActivate: [AuthGardService] },
+  {path: "adherant", component: AdherantComponent,title: "Adherant", canActivate: [AuthGardService]},
   {path: "adherant/:id/edit", component: AdherantEditComponent, title:"Edit adherant", canActivate: [AuthGardService]},
   {path: "adherant/add", component: AdherantAddComponent,title: "Ajouter Adherant", canActivate: [AuthGardService] },
 
@@ -53,13 +52,12 @@ const routes: Routes = [
 
   {path: "statistique", component: StatistiquesComponent, title: "Statistiques", canActivate: [AuthGardService]},
   {path: "login", component: LoginComponent,title: "Login"},
-  {path: "settings",component: SettingsComponent, title: "settings", canActivate: [AuthGardService]},
+  {path: "settings",component: SettingsComponent, title: "settings", canActivate: [AuthGardService], data: { role: 'SuperAdmin' }},
   
   {path: "user/add",component: SettingsAddComponent, title: "Add Users", canActivate: [AuthGardService]},
   {path: "user/:id/edit",component: SettingsEditComponent, title: "Modify User", canActivate: [AuthGardService]}
-
-
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

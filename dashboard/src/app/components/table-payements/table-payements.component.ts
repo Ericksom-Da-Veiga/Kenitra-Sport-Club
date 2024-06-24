@@ -17,11 +17,18 @@ export class TablePayementsComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
 
-  // Varables pour la pagination
+  // Variables pour la pagination
   currentPage: number = 1;
   itemsPerPage: number = 10;
   nombre: number = 0;
   message!: string;
+
+  sortOrder: 'asc' | 'desc' = 'asc';
+  lastSortedProperty: keyof payementResponse | null = null;
+
+  totalPrixPorPagina!: number[];
+
+
 
   constructor(
     private payementService: PayementService,
@@ -30,6 +37,7 @@ export class TablePayementsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPayements();
+    this.updatePrixTotalParPage();
   }
 
   onPageChange(pageNumber: number) {
@@ -77,15 +85,31 @@ export class TablePayementsComponent implements OnInit {
   }
 
   sort(property: keyof payementResponse) {
+    // Verificar se já está ordenado pelo mesmo campo
+    if (this.lastSortedProperty === property) {
+      // Alternar a direção da ordenação
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Se não, iniciar com a ordenação ascendente
+      this.sortOrder = 'asc';
+    }
+  
     this.filteredPayementList.sort((a, b) => {
-      if (a[property] < b[property]) {
-        return -1;
-      } else if (a[property] > b[property]) {
-        return 1;
+      const aValue = a[property];
+      const bValue = b[property];
+  
+      if (aValue < bValue) {
+        return this.sortOrder === 'asc' ? -1 : 1;
+      } else if (aValue > bValue) {
+        return this.sortOrder === 'asc' ? 1 : -1;
       }
       return 0;
     });
+  
+    // Atualizar o campo de última propriedade ordenada
+    this.lastSortedProperty = property;
   }
+  
 
   deletePayement($event: MouseEvent,id: number) {
     if(confirm('Vous etez sur de supprimer cette adherant?'))
@@ -96,6 +120,22 @@ export class TablePayementsComponent implements OnInit {
         })
       }
     }
+
+  updatePrixTotalParPage() {
+      this.totalPrixPorPagina = [];
+    
+      // Obter os índices inicial e final dos itens na página atual
+      const startIndex = this.currentPage * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+    
+      // Iterar pelos itens da página atual e calcular a soma de prix
+      const itemsOnCurrentPage = this.filteredPayementList.slice(startIndex, endIndex);
+      const totalPrix = itemsOnCurrentPage.reduce((total, payement) => total + payement.prix, 0);
+    
+      // Adicionar a soma total à lista totalPrixPorPagina
+      this.totalPrixPorPagina[this.currentPage] = totalPrix;
+    }
+    
 
     exportToCSV() {
       const options = {

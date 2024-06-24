@@ -16,8 +16,8 @@ export class DashboardService {
     return this.Http.get('http://localhost:8080/dashboard/sports');
   };
 
-  countMoney(){
-    return this.Http.get('http://localhost:8080/dashboard/payements');
+  countMoneyForMonth(){
+    return this.Http.get('http://localhost:8080/payements/countmonth');
   };
 
   getAbonnements(){
