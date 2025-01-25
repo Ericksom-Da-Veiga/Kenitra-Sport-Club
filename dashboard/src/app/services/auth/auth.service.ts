@@ -28,6 +28,8 @@ export class AuthService {
   public logout(): void {
     // Limpar o token do localStorage
     localStorage.removeItem('token');
+    localStorage.removeItem('activeLinkId');
+    localStorage.removeItem('role');
     this.router.navigate(['/login']);
   }
 

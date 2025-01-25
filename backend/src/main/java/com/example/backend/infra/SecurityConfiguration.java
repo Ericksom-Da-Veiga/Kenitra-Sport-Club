@@ -20,29 +20,45 @@ public class SecurityConfiguration {
 
     @Autowired
     private SecurityFilter securityfilter;
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
-            .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authorize -> authorize
-            //Login
-            .requestMatchers(HttpMethod.POST,"/login").permitAll()
-            //tous les autres request
-            .anyRequest().authenticated()
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+        throws Exception {
+        return http
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(management ->
+                management.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS
+                )
+            )
+            .authorizeHttpRequests(authorize ->
+                authorize
+                    //Login
+                    .requestMatchers(HttpMethod.POST, "/login")
+                    .permitAll()
+                    //tous les autres request
+                    .anyRequest()
+                    .authenticated()
             )
             //para adicionar o nosso filter(securityFilter) a ser usado antes do filter do spring
-            .addFilterBefore(securityfilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(
+                securityfilter,
+                UsernamePasswordAuthenticationFilter.class
+            )
             .build();
     }
 
     //para mostrar para o spring aonde ele deve pegar o AuthenticationManager
     @Bean
-    public AuthenticationManager authenticationmanager(AuthenticationConfiguration configuration) throws Exception{
+    public AuthenticationManager authenticationmanager(
+        AuthenticationConfiguration configuration
+    ) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
     //para criptar o password do usuario
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

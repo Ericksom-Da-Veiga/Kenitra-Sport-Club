@@ -29,7 +29,7 @@
               </div>
               <div class="col-md-6 form-champ">
                 <label for="validationCustom05" class="form-label">Date naissance</label>
-                <input type="date" [(ngModel)]="date_naissance" name="date_naissance" class="form-control" id="validationCustom05" required>
+                <input type="date" [(ngModel)]="date_naissance" [max]="maxDate" name="date_naissance" class="form-control" id="validationCustom05" required>
               </div>
               <div class="col-md-6 form-champ">
                 <label for="validationCustom05" class="form-label">Telephone</label>

@@ -1,6 +1,7 @@
 package com.example.backend.entites;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import com.example.backend.dto.abonnement.DTO_post_abonnement;
 import com.example.backend.dto.abonnement.DTO_put_abonnement;
@@ -54,5 +55,16 @@ public class Abonnement {
 
     public void activer() {
         this.active = 1;
+    }
+
+    public void calculerDureeEtAjouter() {
+        // Calcula a diferença em meses entre date_debut e date_fin
+        Period period = Period.between(date_debut, date_fin);
+        
+        // Obtém a quantidade de meses da diferença
+        long dureeMois = period.toTotalMonths();
+        
+        // Adiciona a duração em meses à date_fin
+        this.date_fin = this.date_fin.plusMonths(dureeMois);
     }
 }

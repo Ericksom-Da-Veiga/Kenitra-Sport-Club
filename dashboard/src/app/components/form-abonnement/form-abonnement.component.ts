@@ -72,10 +72,12 @@ export class FormAbonnementComponent implements OnInit{
           totalPrix += prixSport;
         });
         this.prix = totalPrix;
-        if(this.duree !== null && this.duree !== 0 && this.duree !== 12 ){
-          this.prix_totale = totalPrix * this.duree;
-        }else if(this.duree === 12){
+        if(this.duree === 12){
           this.prix_totale = 1800;
+        }else if(this.duree === 6){
+          this.prix_totale = 1000
+        }else if(this.duree !== null && this.duree !== 0){
+          this.prix_totale = totalPrix * this.duree;
         }else{
           this.prix_totale = this.prix;
         }

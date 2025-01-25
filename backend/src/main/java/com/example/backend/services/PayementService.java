@@ -8,14 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.example.backend.dto.payement.DTO_get_payements;
 import com.example.backend.dto.payement.DTO_post_payements;
+import com.example.backend.entites.Abonnement;
 import com.example.backend.entites.Payement;
 import com.example.backend.infra.Response;
+import com.example.backend.repository.AbonnementRepository;
 import com.example.backend.repository.PayementRepository;
 
 @Service
 public class PayementService {
     @Autowired
     private PayementRepository repository;
+    @Autowired
+    private AbonnementRepository abonnementrepository;
 
     public Response<DTO_get_payements> recuperer_payements(){
         Response<DTO_get_payements> response = new Response<>();
@@ -44,6 +48,9 @@ public class PayementService {
         try {
             Payement payement = new Payement(data);
             repository.save(payement);
+
+            Abonnement abonnement = abonnementrepository.getReferenceById(data.id_abonnement());
+            abonnement.calculerDureeEtAjouter();
 
             List<DTO_get_payements> list_Payements = new ArrayList<>();
             list_Payements.add(new DTO_get_payements(payement));

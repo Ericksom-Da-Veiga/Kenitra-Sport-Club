@@ -16,6 +16,7 @@ import { SportService } from 'src/app/services/sport/sport.service';
 export class TableAbonnementComponent implements OnInit {
 
   Abonnements!: AbonnementResponse[];
+  filteredAbonnements!: AbonnementResponse[];
   duree_abonnement!: Date;
   data: any;
   message!: string;
@@ -27,6 +28,10 @@ export class TableAbonnementComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   nombre: number = 0;
+
+  sortOrder: 'asc' | 'desc' = 'asc';
+  lastSortedProperty: keyof AbonnementResponse | null = null;
+
   
 
   constructor(
@@ -58,7 +63,7 @@ export class TableAbonnementComponent implements OnInit {
           //recuperer la dure du abonnement
           abonnement.duree = differenceInDays(abonnement.date_fin, abonnement.date_debut);
           //definir le type d'abonnement
-          if (abonnement.duree === 365) {
+          if (abonnement.duree >= 365) {
             abonnement.typeAbonnement = "Anuel";
           } else if (abonnement.duree > 80 && abonnement.duree <= 100) {
             abonnement.typeAbonnement = "Trimensuel";
@@ -115,10 +120,7 @@ export class TableAbonnementComponent implements OnInit {
       setTimeout(() => window.location.reload(), 1500);
     })
   }
-
-  
-  
-  
+ 
 
   exportToCSV() {
     const options = {

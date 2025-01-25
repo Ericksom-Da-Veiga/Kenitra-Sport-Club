@@ -26,7 +26,11 @@ export class FormAdherantComponent {
   nom_mere!: String;
   tel_parant!: String;
 
-  constructor(private AdherantService: AdherantService){};
+  maxDate!: string;
+
+  constructor(private AdherantService: AdherantService){
+    this.maxDate = '2014-12-31';
+  };
 
   saveAdherant() {
 
