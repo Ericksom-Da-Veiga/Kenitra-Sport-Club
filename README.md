@@ -1,53 +1,53 @@
-# Gestion d'une Salle de Sport
-Ce projet a pour objectif de fournir une plateforme de gestion complète pour une salle de sport.
-## Objectif
-Simplifier la gestion quotidienne d'une salle de sport, tout en offrant une solution intuitive pour gérer les adhérents, les abonnements, les coachs, et les paiements.
-## Fonctionnalités principales
-- **Gestion des adhérents** : possibilité d'ajouter, de supprimer et de modifier les informations des adhérents.
-- **Gestion des Abonnements**:
-	- Chaque abonnement peut inclure un ou plusieurs sports.
-	- Les abonnements ont une durée et un prix fixe à payer.
-- **Gestion des Coachs**:Attribution d'un ou plusieurs coachs à chaque sport proposé.
-- **Gestion des Paiements**:
-	- Enregistrement des paiements : Les utilisateurs peuvent enregistrer les paiements effectués par les adhérents.
-	- Suivi des dettes : La plateforme permet d'identifier et de suivre les adhérents ayant des dettes ou des paiements en retard.
-## Technologies utilisées
-- **Frontend** : AngularJS
-- **Backend** : Spring Boot
-- **Base de données** : MySQL
-  
-## Comment Utiliser
-Pour commencer à utiliser GestionTontine, suivez ces étapes simples :
+# Sports Hall Management  
+This project aims to provide a complete management platform for a sports hall.  
 
-1 . Clonez le Dépôt : Clonez le dépôt du projet sur votre machine locale en utilisant la commande git clone.
+## Objective  
+Simplify the daily management of a sports hall while offering an intuitive solution to manage members, subscriptions, coaches, and payments.  
 
-2 - Installez les Dépendances :
+## Key Features  
+- **Member Management**: Ability to add, delete, and update member information.  
+- **Subscription Management**:  
+	- Each subscription can include one or more sports.  
+	- Subscriptions have a fixed duration and price to pay.  
+- **Coach Management**: Assignment of one or more coaches to each offered sport.  
+- **Payment Management**:  
+	- **Payment Recording**: Users can record payments made by members.  
+	- **Debt Tracking**: The platform identifies and tracks members with outstanding payments or delays.  
 
-- Dans le repertoire **backend**:
+## Technologies Used  
+- **Frontend**: AngularJS  
+- **Backend**: Spring Boot  
+- **Database**: MySQL  
 
-		mvn clean install
+## How to Use  
+To start using Sports Hall Management, follow these simple steps:  
 
-- Dans le repertoire **dashboard**:
+1 . **Clone the Repository**: Clone the project repository to your local machine using the `git clone` command.  
 
-  		npm install
+2 - **Install Dependencies**:  
 
-3 - Configuration de la Base de Données
+- In the **backend** directory:  
 
-4 - Lancez l'Application:
+		mvn clean install  
 
-- Pour Lancer le backend:
-  
-		mvn spring-boot:run
+- In the **dashboard** directory:  
 
-- Pour lancer le frontend:
+		npm install  
 
-		ng serve
+3 - **Database Configuration**  
 
-## Contribution
+4 - **Run the Application**:  
 
-Les contributions sont les bienvenues. Si vous avez des idées d'amélioration, des bogues à signaler ou des fonctionnalités à ajouter, n'hésitez pas à ouvrir une issue ou à soumettre une pull request sur mon dépôt GitHub.
+- To run the **backend**:  
 
-## Licence
-Ce projet est sous licence MIT, ce qui signifie qu'il est ouvert à l'utilisation, la modification et la distribution par la communauté. Consultez le fichier LICENSE pour plus de détails.
+		mvn spring-boot:run  
 
+- To run the **frontend**:  
 
+		ng serve  
+
+## Contribution  
+Contributions are welcome. If you have improvement ideas, bugs to report, or features to add, feel free to open an issue or submit a pull request on my GitHub repository.  
+
+## License  
+This project is licensed under the MIT License, which means it is open for community use, modification, and distribution. Refer to the LICENSE file for more details.  
